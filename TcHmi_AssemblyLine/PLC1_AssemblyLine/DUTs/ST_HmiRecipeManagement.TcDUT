@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <DUT Name="ST_HmiRecipeManagement" Id="{89b330ed-13a3-44a0-83e4-b80ff2637e08}">
+    <Declaration><![CDATA[TYPE ST_HmiRecipeManagement :
+STRUCT
+	//Current recipe name
+	sCurrentRecipeName	: STRING(50)	:= 'Unknown recipe';
+
+	//Feeder recipe data
+	stFeederRecipe		: ST_HmiFeederRecipe;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

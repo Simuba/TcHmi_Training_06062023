@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <DUT Name="ST_HmiAutomaticMode" Id="{5c60fbdb-dfdf-452d-8549-16644c5ccd9b}">
+    <Declaration><![CDATA[TYPE ST_HmiAutomaticMode :
+STRUCT
+	//Current state of the automatic mode state machine
+	nStateNumber		: INT := 0;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

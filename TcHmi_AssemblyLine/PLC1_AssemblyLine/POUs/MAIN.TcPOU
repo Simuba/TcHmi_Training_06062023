@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.10">
+  <POU Name="MAIN" Id="{4e4178e0-7104-4b3d-8342-d5a78fcb71f7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbFeeder1		: FB_Feeder(nFeederId := 1);
+	fbFeeder2		: FB_Feeder(nFeederId := 2);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbFeeder1();
+fbFeeder2();]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.47">
+	<Translations>
+		<Text TxtId="MyEventClass">
+			<Text LcId="1031"><![CDATA[Meine Event Klasse]]></Text>
+		</Text>
+		<Text TxtId="My Message">
+			<Text LcId="1031"><![CDATA[Meine Meldung]]></Text>
+		</Text>
+		<Text TxtId="My Alarm from {0}">
+			<Text LcId="1031"><![CDATA[mein Alarm von {0}]]></Text>
+		</Text>
+	</Translations>
+	<DataTypes>
+		<DataType>
+			<Name GUID="{62234DD4-C363-4F39-9028-8D8AA4EA577B}" PersistentType="true">MyEventClass</Name>
+			<DisplayName TxtId=""><![CDATA[MyEventClass]]></DisplayName>
+			<EventId>
+				<Name Id="1">MyFirstMessage</Name>
+				<DisplayName TxtId=""><![CDATA[My Message]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">MyFirstAlarm</Name>
+				<DisplayName TxtId=""><![CDATA[My Alarm from {0}]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{833F925F-4DA7-42B2-9183-A07681057B9E}"/>
+				<Hide GUID="{7DA94235-7CFF-40F5-965D-F428A9B60163}"/>
+				<Hide GUID="{D1ED8511-B75C-4F36-A0C5-923D6D65E5D2}"/>
+				<Hide GUID="{1EFA1424-9ABB-4069-B15D-30B109DCB3FD}"/>
+				<Hide GUID="{40A55DF5-3F75-44C5-80BF-5910F8F6505C}"/>
+				<Hide GUID="{57FC77E8-FEBF-4111-A77D-01E46FFBB964}"/>
+			</Hides>
+		</DataType>
+	</DataTypes>
+	<Project ProjectGUID="{67663871-948B-41E3-B36F-EC74EF083593}" Target64Bit="true" ShowHideConfigurations="#x106">
+		<System>
+			<Settings MaxCpus="4" NonWinCpus="1">
+				<Cpu CpuId="3"/>
+			</Settings>
+			<Tasks>
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{44C1F111-780F-48A9-85AE-9E5365A0DE5E}" Name="Plc" PrjFilePath="Plc\Plc.plcproj" TmcFilePath="Plc\Plc.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{F42D6A90-3B6D-9F8A-7B2E-890C1992FB8E}">
+					<Name>Plc Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Contexts>
+						<Context>
+							<Id>0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>10000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+		</Plc>
+	</Project>
+</TcSmProject>

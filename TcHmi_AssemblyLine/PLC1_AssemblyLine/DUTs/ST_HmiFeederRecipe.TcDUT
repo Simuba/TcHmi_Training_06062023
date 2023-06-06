@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <DUT Name="ST_HmiFeederRecipe" Id="{a38c2975-9366-4771-988d-9225447d65ad}">
+    <Declaration><![CDATA[TYPE ST_HmiFeederRecipe :
+STRUCT
+	//Target 1 name
+	sTarget1Name			: STRING := 'Target Pos1';
+	//Target 1 positon for X axis
+	fTarget1PositionX		: LREAL	:= LREAL#0.0;
+	//Target 1 position for Y axis
+	fTarget1PositionY		: LREAL	:= LREAL#0.0;
+
+	//Target 2 name
+	sTarget2Name			: STRING := 'Target Pos2';
+	//Target 2 positon for X axis
+	fTarget2PositionX		: LREAL	:= LREAL#1000.0;
+	//Target 2 position for Y axis
+	fTarget2PositionY		: LREAL	:= LREAL#2000.0;
+	
+	//Velocity of both axis	
+	fVelocity				: LREAL := 500;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

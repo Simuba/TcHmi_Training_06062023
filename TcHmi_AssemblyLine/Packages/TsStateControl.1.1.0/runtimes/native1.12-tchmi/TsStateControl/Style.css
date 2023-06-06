@@ -1,0 +1,78 @@
+﻿/* General theme independed control css. */
+
+/* Static styles ------------------------------------------------------------ */
+/* Styles for the main element */
+.TcHmi_Controls_TsStateControl_TsStateControl {
+    overflow: hidden;
+    min-height: 74px;
+    max-height: 100px;
+    min-width: 320px;
+}
+
+/* Main flex container */
+.TcHmi_Controls_TsStateControl_TsStateControl-Template {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/* Items of main flex container */
+.state-control-text-container, .state-control-item {
+    margin: 2px;
+    width: auto;
+    height: 70px;
+    align-self: center;
+}
+
+/* Text flex container */
+.state-control-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Text item */
+.state-control-text {
+    padding: 4px;
+    font-size: 25px;
+}
+
+/* Item */
+.state-control-item {
+    width: 70px;
+    background-color: blue;
+    background-size: cover; /* contain, cover*/
+}
+
+/* Automatic */
+.state-control-automatic {
+    background-image: url(Themes/Base/Images/state_automatic.svg);
+}
+
+/* Manual */
+.state-control-manual {
+    background-image: url(Themes/Base/Images/state_manual.svg);
+}
+
+/* Stop */
+.state-control-stop {
+    background-image: url(Themes/Base/Images/state_stop.svg);
+}
+
+
+/* Conditional styles ------------------------------------------------------------ */
+.state-control-item.requested {
+    margin: 0px;
+    border-color: white;
+    border-style: dashed;
+    border-width: 2px;
+}
+
+.state-control-item.responded {
+    margin: 0px;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+}

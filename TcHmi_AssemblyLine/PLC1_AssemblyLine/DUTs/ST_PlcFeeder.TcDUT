@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <DUT Name="ST_PlcFeeder" Id="{edd7a9e9-6268-43fd-832b-48ed2befef6c}">
+    <Declaration><![CDATA[TYPE ST_PlcFeeder :
+STRUCT
+	//ID of the feeder as identification in hmi, log, etc.
+	nFeederId				: USINT;
+
+	//Current operation mode of the machine
+	eStationState			: E_StationState;
+	
+	//Delay for simulating drag and drop
+	fbTonAuto				: TON;
+	
+	//State machine of automatic mode
+	eAutoState				: E_FeederAutoState;
+
+	//NC-drive X axis
+	fbAxisX					: FB_Axis;
+	//NC-drive Y axis
+	fbAxisY					: FB_Axis;	
+
+	//Gripper status
+	bCloseGripper			: BOOL;
+	bGripperIsClosed		: BOOL;
+	
+	//Current position of the X axis for historize extension in the HMI server
+	fHmiPosXHistorize		: LREAL;
+	//Current position of the Y axis for historize extension in the HMI server
+	fHmiPosYHistorize		: LREAL;
+	//Current velocity of the X axis for historize extension in the HMI server
+	fHmiVeloXHistorize		: LREAL;
+	//Current velocity of the Y axis for historize extension in the HMI server
+	fHmiVeloYHistorize		: LREAL;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

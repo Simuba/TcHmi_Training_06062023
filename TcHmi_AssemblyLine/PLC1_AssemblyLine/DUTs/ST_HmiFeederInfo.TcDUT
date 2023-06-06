@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <DUT Name="ST_HmiFeederInfo" Id="{246ed42a-29c6-43f9-b586-1991eb649eaa}">
+    <Declaration><![CDATA[TYPE ST_HmiFeederInfo :
+STRUCT
+	//Bundled information about axis X
+	stAxisX				: ST_HmiAxisInfo;
+	
+	//Bundled information about axis Y
+	stAxisY				: ST_HmiAxisInfo;
+	
+	//Information about the gripper
+	bGripperIsClosed	: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

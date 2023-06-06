@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <DUT Name="ST_HmiErrorSimulation" Id="{b5ca15a9-f69f-401e-8619-a7d5fd9a4fbe}">
+    <Declaration><![CDATA[TYPE ST_HmiErrorSimulation :
+STRUCT
+	bOnMoveBackUp			: BOOL;
+	bOnMoveBackward			: BOOL;
+	bOnMoveDownForDragging	: BOOL;
+	bOnDrag					: BOOL;
+	bOnMoveUp				: BOOL;
+	bOnMoveForward			: BOOL;
+	bOnMoveDownForDropping	: BOOL;
+	bOnDrop					: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

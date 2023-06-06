@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{2fb61292-a0a1-4762-9537-cc681792ecee}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	iCounter : INT;
+	bToggle: BOOL;
+	bReset: BOOL;
+	stext : STRING := 'Start';
+	
+	
+	fbAlarmingEx	: AlarmingEx;
+	
+	bAlarm 		: BOOL;
+	iAlarm		: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF bToggle THEN
+	iCounter := (iCounter+1 ) MOD 1000;
+	sText := 'Start';
+	IF iCounter = 0 THEN
+		bToggle := FALSE;
+	END_IF
+ELSE
+	sText := 'Stop';
+	(*
+	IF bReset THEN
+		bReset := FALSE;
+		iCounter := 0;
+	END_IF*)
+
+END_IF
+
+Alarming();
+fbAlarmingEx();
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="11" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="19" Count="2" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

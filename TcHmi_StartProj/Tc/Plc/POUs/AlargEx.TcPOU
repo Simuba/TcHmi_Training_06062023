@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="AlargEx" Id="{806ffe9a-70c8-4db3-b35f-4fbb1bfb96d1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AlargEx
+VAR
+	bInit			: BOOL := TRUE;
+	bRaise			: BOOL;
+	bClear			: BOOL;
+	
+	fbAlm			: FB_TcAlarm;
+	fbSourceInfo	: FB_TcSourceInfo;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bInit THEN
+	bInit := FALSE;
+	
+	fbSourceInfo.Clear();
+	fbSourceInfo.sName := '%l%L_MyName%/l%';
+	
+	//fbAlm.CreateEx(TC_Events.MyEventClass.MyAlarm, TRUE, 0);
+	fbAlm.CreateEx(TC_Events.MyEventClass.MyFirstAlarm, TRUE, fbSourceInfo);
+	
+	fbAlm.ipArguments.Clear();
+	fbAlm.ipArguments.AddString('BMK');
+END_IF
+
+IF bRaise THEN
+	bRaise := FALSE;
+	fbAlm.Raise(0);
+END_IF
+
+IF bClear AND (fbAlm.eConfirmationState = TcEventConfirmationState.Confirmed) THEN
+	bClear := FALSE;
+	fbAlm.Clear(0, FALSE);
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="AlargEx">
+      <LineId Id="15" Count="20" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

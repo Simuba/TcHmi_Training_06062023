@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.10">
+  <DUT Name="E_FeederAutoState" Id="{e92d2993-653a-4bb9-8ccd-e5f5498f8d8f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+TYPE E_FeederAutoState :
+(
+	eReset					:= 0,
+	eMoveBackUp				:= 1,
+	eMoveBackward			:= 2,
+	eMoveDownForDragging	:= 3,
+	eDrag					:= 4,
+	eMoveUp					:= 5,
+	eMoveForward			:= 6,
+	eMoveDownForDropping	:= 7,
+	eDrop					:= 8
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <DUT Name="ST_Hmi" Id="{72882cbe-998c-4928-9fcd-89510b1ecd6b}">
+    <Declaration><![CDATA[TYPE ST_Hmi :
+STRUCT
+	//Operation mode 
+	nStationState_Request	: INT;
+	nStationState_Respond	: INT;	
+	
+	//Bundled manual mode settings and feedback
+	stManualMode			: ST_HmiManualMode;
+	
+	//Bundled automatic mode settings and feedback
+	stAutomaticMode			: ST_HmiAutomaticMode;
+	
+	//Bundled teach mode / recipe management settings and feedback
+	stRecipeManagement		: ST_HmiRecipeManagement;
+	
+	//Bundled error simulation
+	stErrorSimulation		: ST_HmiErrorSimulation;
+	
+	//Bundled feeder information
+	stFeederInfo			: ST_HmiFeederInfo;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

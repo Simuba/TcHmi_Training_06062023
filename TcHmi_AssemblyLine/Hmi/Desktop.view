@@ -1,0 +1,89 @@
+<div id="Desktop" data-tchmi-type="TcHmi.Controls.System.TcHmiView" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width-mode="Content" data-tchmi-min-width="100" data-tchmi-min-width-unit="%" data-tchmi-height-mode="Content" data-tchmi-min-height="100" data-tchmi-min-height-unit="%">
+<div id="grMain" data-tchmi-type="TcHmi.Controls.System.TcHmiGrid" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0">
+
+<script data-tchmi-target-attribute="data-tchmi-row-options" type="application/json">
+[
+  {
+    "height": 80.0,
+    "heightUnit": "px",
+    "heightMode": "Value",
+    "maxHeightUnit": "px",
+    "minHeightUnit": "px",
+    "overflow": false
+  },
+  {
+    "height": 1.0,
+    "heightUnit": "factor",
+    "heightMode": "Value",
+    "maxHeightUnit": "px",
+    "minHeightUnit": "px",
+    "overflow": false
+  },
+  {
+    "height": 80.0,
+    "heightUnit": "px",
+    "heightMode": "Value",
+    "maxHeightUnit": "px",
+    "minHeightUnit": "px",
+    "overflow": false
+  }
+]
+</script>
+<div id="rgMain" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-grid-column-index="0" data-tchmi-grid-row-index="1" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="10" data-tchmi-bottom="10" data-tchmi-target-content="Contents/C_Automatic.content">
+</div>
+<div id="nbarMain" data-tchmi-type="TcHmi.Controls.ResponsiveNavigation.TcHmiNavigationBar" data-tchmi-grid-column-index="0" data-tchmi-grid-row-index="2" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-switch-breakpoint="800" data-tchmi-nav-target-region-control-symbol="%ctrl%rgMain%/ctrl%" data-tchmi-nav-content-control-symbol="%ctrl%navcMain%/ctrl%" data-tchmi-alignment="Bottom">
+
+<script data-tchmi-target-attribute="data-tchmi-menu-source-data" type="application/json">
+[
+  {
+    "name": "Automatic",
+    "page": "Contents/C_Automatic.content",
+    "imageWidthUnit": "px",
+    "imageHeightUnit": "px"
+  },
+  {
+    "name": "Settings",
+    "page": "Contents/C_Settings.content",
+    "imageWidthUnit": "px",
+    "imageHeightUnit": "px"
+  }
+]
+</script>
+</div>
+<div id="navcMain" data-tchmi-type="TcHmi.Controls.ResponsiveNavigation.TcHmiNavigationContent" data-tchmi-grid-column-index="0" data-tchmi-grid-row-index="1" data-tchmi-height-mode="Value" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-top="0">
+</div>
+<div id="grMainHeader" data-tchmi-type="TcHmi.Controls.System.TcHmiGrid" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0">
+
+<script data-tchmi-target-attribute="data-tchmi-column-options" type="application/json">
+[
+  {
+    "width": 1.0,
+    "widthUnit": "factor",
+    "widthMode": "Value",
+    "maxWidthUnit": "px",
+    "minWidthUnit": "px",
+    "overflow": false
+  },
+  {
+    "width": 1.0,
+    "widthUnit": "factor",
+    "widthMode": "Value",
+    "maxWidthUnit": "px",
+    "minWidthUnit": "px",
+    "overflow": false
+  },
+  {
+    "width": 350.0,
+    "widthUnit": "px",
+    "widthMode": "Value",
+    "maxWidthUnit": "px",
+    "minWidthUnit": "px",
+    "overflow": false
+  }
+]
+</script>
+<div id="TsStateControl" data-tchmi-type="TcHmi.Controls.TsStateControl.TsStateControl" data-tchmi-blue-state="Man." data-tchmi-green-state="Auto." data-tchmi-grid-column-index="2" data-tchmi-grid-row-index="0" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-orange-state="Stop" data-tchmi-request-state="%s%PLC1.MAIN.fbFeeder1.stHmi.nStationState_Request|BindingMode=TwoWay%/s%" data-tchmi-response-state="%s%PLC1.MAIN.fbFeeder1.stHmi.nStationState_Respond%/s%" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="10" data-tchmi-bottom="0">
+</div>
+</div>
+</div>
+</div>

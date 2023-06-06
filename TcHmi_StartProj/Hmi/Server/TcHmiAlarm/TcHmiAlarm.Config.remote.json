@@ -1,0 +1,24 @@
+{
+    "alarmSymbols": {
+        "PLC1.MAIN.bAlarm": {
+            "alarmSettings": {
+                "ALARMSETTING": {
+                    "alarmTextKey": "settingMatch",
+                    "condition": [
+                        {
+                            "comparator": "==",
+                            "path": "",
+                            "value": true
+                        }
+                    ],
+                    "enabled": true,
+                    "notificationType": 1,
+                    "severity": 3
+                }
+            },
+            "enabled": true,
+            "interval": "PT1S",
+            "onError": false
+        }
+    }
+}

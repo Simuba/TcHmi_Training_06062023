@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <DUT Name="ST_HmiManualMode" Id="{caff7fbc-7c4e-47d8-93b6-321074083800}">
+    <Declaration><![CDATA[TYPE ST_HmiManualMode :
+STRUCT
+	//Manual mode - move X axis forward
+	bButtonForwardX			: BOOL;
+	//Manual mode - move X axis backward
+	bButtonBackwardX		: BOOL;
+	//Manual mode - move Y axis forward
+	bButtonForwardY		: BOOL;
+	//Manual mode - move Y axis backward
+	bButtonBackwardY		: BOOL;
+	//Manual mode - close gripper
+	bButtonCloseGripper		: BOOL;
+	//Manual mode - velocity X axis	
+	fVelocityX			: LREAL := 500;
+	//Manual mode - velocity Y axis
+	fVelocityY			: LREAL := 500;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

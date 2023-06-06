@@ -1,0 +1,920 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <POU Name="FB_Feeder" Id="{47340aa9-d0a4-4fe6-af12-8f0dddeaa12a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Feeder
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	
+	stPlcFeeder				: ST_PlcFeeder;
+	
+	//Struct for communication with the HMI
+	stHmi					: ST_Hmi;
+END_VAR
+VAR PERSISTENT
+	//Current target positions from hmi recipe management
+	stTargets				: ST_HmiFeederRecipe;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Drives
+stPlcFeeder.fbAxisX();
+stPlcFeeder.fbAxisY();
+
+// Hmi
+M_Hmi();
+
+// state machine
+M_StationState();
+
+// Events
+M_Events();
+
+CASE stHmi.nStationState_Request OF
+	0: stPlcFeeder.eStationState := E_StationState.eStop;
+	1: stPlcFeeder.eStationState := E_StationState.eManual;
+	2: stPlcFeeder.eStationState := E_StationState.eAuto;
+END_CASE]]></ST>
+    </Implementation>
+    <Folder Name="AutoStatemachine" Id="{7e0c7d68-527f-4c2f-8917-9ed77b2a94c2}" />
+    <Folder Name="OpMode" Id="{23f2eee6-2d9f-4c9e-b8b6-4518503be901}" />
+    <Method Name="FB_init" Id="{b1a35845-9ea2-42b5-bf56-ca16cae8e951}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains	: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode		: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	nFeederId		: USINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FeederId := nFeederId;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="FeederId" Id="{587ce8bb-4778-4c58-9981-719e1e91ebe5}">
+      <Declaration><![CDATA[PROPERTY PUBLIC FeederId : USINT]]></Declaration>
+      <Get Name="Get" Id="{d5e5366b-32cf-41b7-af90-1d650ed35c4f}">
+        <Declaration><![CDATA[PUBLIC
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[FeederId := stPlcFeeder.nFeederId;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{cc2fae42-642f-40d8-8f46-1bce23e3f19c}">
+        <Declaration><![CDATA[PRIVATE
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[stPlcFeeder.nFeederId := FeederId;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="M_Auto" Id="{98ba701b-e454-4b16-bb44-13298b352a1e}" FolderPath="OpMode\">
+      <Declaration><![CDATA[METHOD M_Auto
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Stoppping all axis for op mode change
+IF stHmi.nStationState_Request <> 2 THEN
+	stPlcFeeder.fbAxisX.bInStop := TRUE;
+	stPlcFeeder.fbAxisY.bInStop := TRUE;
+	RETURN;
+END_IF
+
+stPlcFeeder.fbTonAuto();
+stPlcFeeder.fbAxisX.fInOverride := LREAL#100;    
+stPlcFeeder.fbAxisX.fInVelocity := stTargets.fVelocity;
+stPlcFeeder.fbAxisY.fInOverride := LREAL#100;    
+stPlcFeeder.fbAxisY.fInVelocity := stTargets.fVelocity;
+
+// State machine automatic mode
+CASE stPlcFeeder.eAutoState OF
+	E_FeederAutoState.eReset:
+		M_AutoReset();
+	E_FeederAutoState.eMoveBackUp:
+		M_AutoMoveBackUp();
+	E_FeederAutoState.eMoveBackward:
+		M_AutoMoveBackward();	
+	E_FeederAutoState.eMoveDownForDragging:
+		M_AutoMoveDownForDragging();
+	E_FeederAutoState.eDrag:
+		M_AutoDrag();
+	E_FeederAutoState.eMoveUp:
+		M_AutoMoveUp();
+	E_FeederAutoState.eMoveForward:
+		M_AutoMoveForward();
+	E_FeederAutoState.eMoveDownForDropping:
+		M_AutoMoveDownForDropping();
+	E_FeederAutoState.eDrop:
+		M_AutoDrop();	
+END_CASE
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoDrag" Id="{4de5ccb6-6e3a-4084-a9cf-ab9435f2fca9}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoDrag
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbAlarm						: Tc3_EventLogger.FB_TcAlarm;
+	bWaitForErrorConfirmation	: BOOL;
+	bConfirmManualy				: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF stHmi.stErrorSimulation.bOnDrag THEN
+	fbAlarm.CreateEx(TC_EVENTS.AssemblyLineEvents.AutomaticModeError, TRUE, 0);
+	fbAlarm.ipArguments.Clear().AddInt(stPlcFeeder.eAutoState);
+END_IF
+
+IF NOT bWaitForErrorConfirmation THEN
+	stPlcFeeder.fbTonAuto.PT := T#2S;
+	stPlcFeeder.fbTonAuto.IN := TRUE;
+	stPlcFeeder.bCloseGripper := TRUE;
+END_IF
+
+IF stPlcFeeder.fbTonAuto.Q THEN
+	stPlcFeeder.fbTonAuto.IN := FALSE;
+	IF stHmi.stErrorSimulation.bOnDrag THEN
+		stHmi.stErrorSimulation.bOnDrag := FALSE;		
+		fbAlarm.Raise(0);
+		bWaitForErrorConfirmation := TRUE;
+	ELSE
+		stPlcFeeder.bGripperIsClosed := TRUE;
+		stPlcFeeder.eAutoState := E_FeederAutoState.eMoveUp;
+	END_IF		
+END_IF
+
+IF bWaitForErrorConfirmation AND fbAlarm.eConfirmationState = TcEventConfirmationState.Confirmed THEN
+	bWaitForErrorConfirmation := FALSE;
+	fbAlarm.Clear(0,TRUE);	
+	stPlcFeeder.bGripperIsClosed := TRUE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eMoveUp;
+END_IF
+
+IF bConfirmManualy THEN
+	bConfirmManualy := FALSE;
+	fbAlarm.Confirm(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoDrop" Id="{7f0f4945-08f5-48e2-a1ed-68f488c36170}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoDrop
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbAlarm						: Tc3_EventLogger.FB_TcAlarm;
+	bWaitForErrorConfirmation	: BOOL;
+	bConfirmManualy				: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF stHmi.stErrorSimulation.bOnDrop THEN
+	fbAlarm.CreateEx(TC_EVENTS.AssemblyLineEvents.AutomaticModeError, TRUE, 0);
+	fbAlarm.ipArguments.Clear().AddInt(stPlcFeeder.eAutoState);
+END_IF
+
+IF NOT bWaitForErrorConfirmation THEN
+	stPlcFeeder.fbTonAuto.PT := T#2S;
+	stPlcFeeder.fbTonAuto.IN := TRUE;
+	stPlcFeeder.bCloseGripper := FALSE;
+END_IF
+
+IF stPlcFeeder.fbTonAuto.Q THEN
+	stPlcFeeder.fbTonAuto.IN := FALSE;
+	IF stHmi.stErrorSimulation.bOnDrop THEN
+		stHmi.stErrorSimulation.bOnDrop := FALSE;		
+		fbAlarm.Raise(0);
+		bWaitForErrorConfirmation := TRUE;
+	ELSE
+		stPlcFeeder.bGripperIsClosed := FALSE;
+		stPlcFeeder.eAutoState := E_FeederAutoState.eMoveBackUp;
+	END_IF		
+END_IF
+
+IF bWaitForErrorConfirmation AND fbAlarm.eConfirmationState = TcEventConfirmationState.Confirmed THEN
+	bWaitForErrorConfirmation := FALSE;	
+	fbAlarm.Clear(0,TRUE);
+	stPlcFeeder.bGripperIsClosed := FALSE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eMoveBackUp;
+END_IF
+
+IF bConfirmManualy THEN
+	bConfirmManualy := FALSE;
+	fbAlarm.Confirm(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoMoveBackUp" Id="{ef43259f-3764-405d-b8d1-a0a138c05f61}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoMoveBackUp
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbAlarm						: Tc3_EventLogger.FB_TcAlarm;
+	bWaitForErrorConfirmation	: BOOL;
+	bConfirmManualy				: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF stHmi.stErrorSimulation.bOnMoveBackUp THEN
+	fbAlarm.CreateEx(TC_EVENTS.AssemblyLineEvents.AutomaticModeError, TRUE, 0);
+	fbAlarm.ipArguments.Clear().AddInt(stPlcFeeder.eAutoState);
+END_IF
+
+stPlcFeeder.fbAxisY.fInTargetPos := 0.0;
+
+IF stPlcFeeder.fbAxisY.fOutActPosition <> 0 THEN
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+	IF stHmi.stErrorSimulation.bOnMoveBackUp THEN
+		stHmi.stErrorSimulation.bOnMoveBackUp := FALSE;
+		stPlcFeeder.fbAxisX.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisY.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisX.bInStop := TRUE;
+		stPlcFeeder.fbAxisY.bInStop := TRUE;
+		fbAlarm.Raise(0);
+		bWaitForErrorConfirmation := TRUE;
+	END_IF
+ELSIF stPlcFeeder.fbAxisY.fOutActPosition = 0 AND NOT bWaitForErrorConfirmation THEN 
+	stPlcFeeder.fbAxisY.bInPositioning := FALSE;
+	stPlcFeeder.eAutoState :=  E_FeederAutoState.eMoveBackward;
+END_IF
+
+IF bWaitForErrorConfirmation AND fbAlarm.eConfirmationState = TcEventConfirmationState.Confirmed THEN
+	bWaitForErrorConfirmation := FALSE;	
+	fbAlarm.Clear(0,TRUE);
+	stPlcFeeder.fbAxisX.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+END_IF
+
+IF bConfirmManualy THEN
+	bConfirmManualy := FALSE;
+	fbAlarm.Confirm(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoMoveBackward" Id="{f0f80dda-deb4-4d02-aa94-f0a3a630c022}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoMoveBackward
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbAlarm						: Tc3_EventLogger.FB_TcAlarm;
+	bWaitForErrorConfirmation	: BOOL;
+	bConfirmManualy				: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF stHmi.stErrorSimulation.bOnMoveBackward THEN
+	fbAlarm.CreateEx(TC_EVENTS.AssemblyLineEvents.AutomaticModeError, TRUE, 0);
+	fbAlarm.ipArguments.Clear().AddInt(stPlcFeeder.eAutoState);
+END_IF
+
+stPlcFeeder.fbAxisX.fInTargetPos := stTargets.fTarget1PositionX;
+
+IF stPlcFeeder.fbAxisX.fOutActPosition <> stTargets.fTarget1PositionX THEN
+	stPlcFeeder.fbAxisX.bInPositioning := TRUE;
+	IF stHmi.stErrorSimulation.bOnMoveBackward THEN
+		stHmi.stErrorSimulation.bOnMoveBackward := FALSE;
+		stPlcFeeder.fbAxisX.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisY.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisX.bInStop := TRUE;
+		stPlcFeeder.fbAxisY.bInStop := TRUE;
+		fbAlarm.Raise(0);
+		bWaitForErrorConfirmation := TRUE;
+	END_IF
+ELSIF stPlcFeeder.fbAxisX.fOutActPosition = stTargets.fTarget1PositionX AND NOT bWaitForErrorConfirmation THEN 
+	stPlcFeeder.fbAxisX.bInPositioning := FALSE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eMoveDownForDragging;
+END_IF
+
+IF bWaitForErrorConfirmation AND fbAlarm.eConfirmationState = TcEventConfirmationState.Confirmed THEN
+	bWaitForErrorConfirmation := FALSE;	
+	fbAlarm.Clear(0,TRUE);	
+	stPlcFeeder.fbAxisX.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInStop := FALSE;
+	stPlcFeeder.fbAxisX.bInPositioning := TRUE;
+END_IF
+
+IF bConfirmManualy THEN
+	bConfirmManualy := FALSE;
+	fbAlarm.Confirm(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoMoveDownForDragging" Id="{2c7baaf9-ebd4-48ca-89cb-42941a8c0000}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoMoveDownForDragging
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbAlarm						: Tc3_EventLogger.FB_TcAlarm;
+	bWaitForErrorConfirmation	: BOOL;
+	bConfirmManualy				: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF stHmi.stErrorSimulation.bOnMoveDownForDragging THEN
+	fbAlarm.CreateEx(TC_EVENTS.AssemblyLineEvents.AutomaticModeError, TRUE, 0);
+	fbAlarm.ipArguments.Clear().AddInt(stPlcFeeder.eAutoState);
+END_IF
+
+stPlcFeeder.fbAxisY.fInTargetPos := stTargets.fTarget1PositionY;
+
+IF stPlcFeeder.fbAxisY.fOutActPosition <> stTargets.fTarget1PositionY THEN
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+	IF stHmi.stErrorSimulation.bOnMoveDownForDragging THEN
+		stHmi.stErrorSimulation.bOnMoveDownForDragging := FALSE;
+		stPlcFeeder.fbAxisX.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisY.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisX.bInStop := TRUE;
+		stPlcFeeder.fbAxisY.bInStop := TRUE;
+		fbAlarm.Raise(0);
+		bWaitForErrorConfirmation := TRUE;
+	END_IF
+ELSIF stPlcFeeder.fbAxisY.fOutActPosition = stTargets.fTarget1PositionY AND NOT bWaitForErrorConfirmation THEN 
+	stPlcFeeder.fbAxisY.bInPositioning := FALSE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eDrag;
+END_IF
+
+IF bWaitForErrorConfirmation AND fbAlarm.eConfirmationState = TcEventConfirmationState.Confirmed THEN
+	bWaitForErrorConfirmation := FALSE;	
+	fbAlarm.Clear(0,TRUE);
+	stPlcFeeder.fbAxisX.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+END_IF
+
+IF bConfirmManualy THEN
+	bConfirmManualy := FALSE;
+	fbAlarm.Confirm(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoMoveDownForDropping" Id="{1260b16a-5d6e-43e9-9cdb-9b77c172e80f}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoMoveDownForDropping
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbAlarm						: Tc3_EventLogger.FB_TcAlarm;
+	bWaitForErrorConfirmation	: BOOL;
+	bConfirmManualy				: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF stHmi.stErrorSimulation.bOnMoveDownForDropping THEN
+	fbAlarm.CreateEx(TC_EVENTS.AssemblyLineEvents.AutomaticModeError, TRUE, 0);
+	fbAlarm.ipArguments.Clear().AddInt(stPlcFeeder.eAutoState);
+END_IF
+
+stPlcFeeder.fbAxisY.fInTargetPos := stTargets.fTarget2PositionY;
+
+IF stPlcFeeder.fbAxisY.fOutActPosition <> stTargets.fTarget2PositionY THEN
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+	IF stHmi.stErrorSimulation.bOnMoveDownForDropping THEN
+		stHmi.stErrorSimulation.bOnMoveDownForDropping := FALSE;
+		stPlcFeeder.fbAxisX.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisY.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisX.bInStop := TRUE;
+		stPlcFeeder.fbAxisY.bInStop := TRUE;
+		fbAlarm.Raise(0);
+		bWaitForErrorConfirmation := TRUE;
+	END_IF
+ELSIF stPlcFeeder.fbAxisY.fOutActPosition = stTargets.fTarget2PositionY AND NOT bWaitForErrorConfirmation THEN 
+	stPlcFeeder.fbAxisY.bInPositioning := FALSE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eDrop;
+END_IF
+
+IF bWaitForErrorConfirmation AND fbAlarm.eConfirmationState = TcEventConfirmationState.Confirmed THEN
+	bWaitForErrorConfirmation := FALSE;	
+	fbAlarm.Clear(0,TRUE);
+	stPlcFeeder.fbAxisX.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+END_IF
+
+IF bConfirmManualy THEN
+	bConfirmManualy := FALSE;
+	fbAlarm.Confirm(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoMoveForward" Id="{aa41d646-4b48-41ed-a136-066fcf4d8372}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoMoveForward
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbAlarm						: Tc3_EventLogger.FB_TcAlarm;
+	bWaitForErrorConfirmation	: BOOL;
+	bConfirmManualy				: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF stHmi.stErrorSimulation.bOnMoveForward THEN
+	fbAlarm.CreateEx(TC_EVENTS.AssemblyLineEvents.AutomaticModeError, TRUE, 0);
+	fbAlarm.ipArguments.Clear().AddInt(stPlcFeeder.eAutoState);
+END_IF
+
+stPlcFeeder.fbAxisX.fInTargetPos := stTargets.fTarget2PositionX;
+
+IF stPlcFeeder.fbAxisX.fOutActPosition <> stTargets.fTarget2PositionX THEN
+	stPlcFeeder.fbAxisX.bInPositioning := TRUE;
+	IF stHmi.stErrorSimulation.bOnMoveForward THEN
+		stHmi.stErrorSimulation.bOnMoveForward := FALSE;
+		stPlcFeeder.fbAxisX.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisY.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisX.bInStop := TRUE;
+		stPlcFeeder.fbAxisY.bInStop := TRUE;
+		fbAlarm.Raise(0);
+		bWaitForErrorConfirmation := TRUE;
+	END_IF
+ELSIF stPlcFeeder.fbAxisX.fOutActPosition = stTargets.fTarget2PositionX AND NOT bWaitForErrorConfirmation THEN 
+	stPlcFeeder.fbAxisX.bInPositioning := FALSE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eMoveDownForDropping;
+END_IF
+
+IF bWaitForErrorConfirmation AND fbAlarm.eConfirmationState = TcEventConfirmationState.Confirmed THEN
+	bWaitForErrorConfirmation := FALSE;	
+	fbAlarm.Clear(0,TRUE);
+	stPlcFeeder.fbAxisX.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInStop := FALSE;
+	stPlcFeeder.fbAxisX.bInPositioning := TRUE;
+END_IF
+
+IF bConfirmManualy THEN
+	bConfirmManualy := FALSE;
+	fbAlarm.Confirm(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoMoveUp" Id="{06d925e9-b581-498c-b359-36cf11ab6aeb}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoMoveUp
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbAlarm						: Tc3_EventLogger.FB_TcAlarm;
+	bWaitForErrorConfirmation	: BOOL;
+	bConfirmManualy				: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF stHmi.stErrorSimulation.bOnMoveUp THEN
+	fbAlarm.CreateEx(TC_EVENTS.AssemblyLineEvents.AutomaticModeError, TRUE, 0);
+	fbAlarm.ipArguments.Clear().AddInt(stPlcFeeder.eAutoState);
+END_IF
+
+stPlcFeeder.fbAxisY.fInTargetPos := 0.0;
+
+IF stPlcFeeder.fbAxisY.fOutActPosition <> 0 THEN
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+	IF stHmi.stErrorSimulation.bOnMoveUp THEN
+		stHmi.stErrorSimulation.bOnMoveUp := FALSE;
+		stPlcFeeder.fbAxisX.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisY.bInPositioning := FALSE;		
+		stPlcFeeder.fbAxisX.bInStop := TRUE;
+		stPlcFeeder.fbAxisY.bInStop := TRUE;
+		fbAlarm.Raise(0);
+		bWaitForErrorConfirmation := TRUE;
+	END_IF
+ELSIF stPlcFeeder.fbAxisY.fOutActPosition = 0 AND NOT bWaitForErrorConfirmation THEN 
+	stPlcFeeder.fbAxisY.bInPositioning := FALSE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eMoveForward;
+END_IF
+
+IF bWaitForErrorConfirmation AND fbAlarm.eConfirmationState = TcEventConfirmationState.Confirmed THEN
+	bWaitForErrorConfirmation := FALSE;	
+	fbAlarm.Clear(0,TRUE);
+	stPlcFeeder.fbAxisX.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInStop := FALSE;
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+END_IF
+
+IF bConfirmManualy THEN
+	bConfirmManualy := FALSE;
+	fbAlarm.Confirm(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_AutoReset" Id="{3bc9d50c-1f58-4c08-8e1a-fd065ce45d6f}" FolderPath="AutoStatemachine\">
+      <Declaration><![CDATA[METHOD M_AutoReset
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stPlcFeeder.fbAxisX.fInTargetPos := 0.0;
+stPlcFeeder.fbAxisY.fInTargetPos := 0.0;
+stPlcFeeder.fbAxisX.bInStop := FALSE;
+stPlcFeeder.fbAxisY.bInStop := FALSE;
+
+IF stPlcFeeder.fbAxisX.fOutActPosition <> 0 THEN 
+	stPlcFeeder.fbAxisX.bInPositioning := TRUE;
+END_IF
+
+IF stPlcFeeder.fbAxisY.fOutActPosition <> 0 THEN 
+	stPlcFeeder.fbAxisY.bInPositioning := TRUE;
+END_IF
+
+IF stPlcFeeder.fbAxisX.fOutActPosition = 0 AND stPlcFeeder.fbAxisY.fOutActPosition = 0 THEN 
+	stPlcFeeder.fbAxisX.bInPositioning := FALSE;
+	stPlcFeeder.fbAxisY.bInPositioning := FALSE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eMoveBackUp;
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Events" Id="{fb0dd317-79d2-4e13-85c1-bf4c1acbc771}">
+      <Declaration><![CDATA[METHOD PRIVATE M_Events : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	sJsonAttributeAxis		: STRING;
+END_VAR
+VAR_INST
+	fbTriggerAutomaticOn	: R_TRIG;
+	fbTriggerManualModeOn	: R_TRIG;
+	fbTriggerStop			: R_TRIG;
+	fbTriggerErrorAxisX		: R_TRIG;
+	fbTriggerErrorAxisY		: R_TRIG;	
+	fbMessage 				: Tc3_EventLogger.FB_TcMessage;
+	fbAlarmAxisX			: Tc3_EventLogger.FB_TcAlarm;
+	fbAlarmAxisY			: Tc3_EventLogger.FB_TcAlarm;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbTriggerAutomaticOn(CLK := stPlcFeeder.eStationState = E_StationState.eAuto);
+IF fbTriggerAutomaticOn.Q THEN
+	fbMessage.CreateEx(TC_EVENTS.AssemblyLineEvents.FeederAutomaticOn, 0);
+	fbMessage.ipArguments.Clear().AddUSInt(FeederId);
+	fbMessage.Send(0);
+END_IF
+
+fbTriggerManualModeOn(CLK := stPlcFeeder.eStationState = E_StationState.eManual);
+IF fbTriggerManualModeOn.Q THEN
+	fbMessage.CreateEx(TC_EVENTS.AssemblyLineEvents.FeederManualModeOn, 0);
+	fbMessage.ipArguments.Clear().AddUSInt(FeederId);
+	fbMessage.Send(0);
+END_IF
+
+fbTriggerStop(CLK := stPlcFeeder.eStationState = E_StationState.eStop);
+IF fbTriggerStop.Q THEN
+	fbMessage.CreateEx(TC_EVENTS.AssemblyLineEvents.FeederStopped, 0);
+	fbMessage.ipArguments.Clear().AddUSInt(FeederId);
+	fbMessage.Send(0);
+END_IF
+
+fbTriggerErrorAxisX(CLK := stPlcFeeder.fbAxisX.bOutError);
+IF fbTriggerErrorAxisX.Q THEN
+	fbAlarmAxisX.Clear(0, TRUE);
+	fbAlarmAxisX.CreateEx(TC_EVENTS.AssemblyLineEvents.FeederError, FALSE, 0);
+	fbAlarmAxisX.ipArguments.Clear().AddUSInt(FeederId).AddString('X');
+	sJsonAttributeAxis := CONCAT(CONCAT('{"ErrorId: ', TO_STRING(stPlcFeeder.fbAxisX.nOutErrorId)), '}');
+	fbAlarmAxisX.SetJsonAttribute(sJsonAttributeAxis);
+	fbAlarmAxisX.Raise(0);
+END_IF
+
+fbTriggerErrorAxisY(CLK := stPlcFeeder.fbAxisY.bOutError);
+IF fbTriggerErrorAxisY.Q THEN
+	fbAlarmAxisY.Clear(0, TRUE);
+	fbAlarmAxisY.CreateEx(TC_EVENTS.AssemblyLineEvents.FeederError, FALSE, 0);
+	fbAlarmAxisY.ipArguments.Clear().AddUSInt(FeederId).AddString('Y');
+	sJsonAttributeAxis := CONCAT(CONCAT('{"ErrorId: ', TO_STRING(stPlcFeeder.fbAxisY.nOutErrorId)), '}');
+	fbAlarmAxisY.SetJsonAttribute(sJsonAttributeAxis);
+	fbAlarmAxisY.Raise(0);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Hmi" Id="{5737b0bd-99a9-47ef-80eb-cbfae1c9354d}">
+      <Declaration><![CDATA[METHOD M_Hmi : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _TaskInfo[GETCURTASKINDEXEX()].FirstCycle THEN
+	stHmi.stRecipeManagement.stFeederRecipe := stTargets;
+END_IF
+
+stHmi.nStationState_Respond := TO_INT(stPlcFeeder.eStationState);
+
+stHmi.stAutomaticMode.nStateNumber := stPlcFeeder.eAutoState;
+stHmi.stFeederInfo.bGripperIsClosed := stPlcFeeder.bGripperIsClosed;
+
+// HMI historize actual position and velocity
+stPlcFeeder.fHmiPosXHistorize := stPlcFeeder.fbAxisX.fOutActPosition;
+stPlcFeeder.fHmiPosYHistorize := stPlcFeeder.fbAxisY.fOutActPosition;
+stPlcFeeder.fHmiVeloXHistorize := stPlcFeeder.fbAxisX.fOutActVelocity;
+stPlcFeeder.fHmiVeloYHistorize := stPlcFeeder.fbAxisY.fOutActVelocity;
+
+// HMI axis information
+stHmi.stFeederInfo.stAxisX.fActPosition := stPlcFeeder.fbAxisX.fOutActPosition;
+stHmi.stFeederInfo.stAxisX.fActVelocity := stPlcFeeder.fbAxisX.fOutActVelocity;
+stHmi.stFeederInfo.stAxisX.nAxisState := stPlcFeeder.fbAxisX.nOutAxisState;
+stHmi.stFeederInfo.stAxisX.eAxisMode := stPlcFeeder.fbAxisX.eOutAxisMode;
+
+stHmi.stFeederInfo.stAxisY.fActPosition := stPlcFeeder.fbAxisY.fOutActPosition;
+stHmi.stFeederInfo.stAxisY.fActVelocity := stPlcFeeder.fbAxisY.fOutActVelocity;
+stHmi.stFeederInfo.stAxisY.nAxisState := stPlcFeeder.fbAxisY.nOutAxisState;
+stHmi.stFeederInfo.stAxisY.eAxisMode := stPlcFeeder.fbAxisY.eOutAxisMode;
+
+//Set targets from hmi recipe management
+stTargets := stHmi.stRecipeManagement.stFeederRecipe;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Man" Id="{6bb836d9-598c-4fc2-9169-79ec0c2ef435}" FolderPath="OpMode\">
+      <Declaration><![CDATA[METHOD M_Man
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Stoppping all axis for op mode change
+IF stHmi.nStationState_Request <> 1 THEN
+	stPlcFeeder.fbAxisX.bInStop := TRUE;
+	stPlcFeeder.fbAxisY.bInStop := TRUE;
+	stPlcFeeder.fbAxisX.bInJog := FALSE;
+	stPlcFeeder.fbAxisY.bInJog := FALSE;
+	stPlcFeeder.eAutoState := E_FeederAutoState.eReset;
+	RETURN;
+END_IF
+
+stPlcFeeder.fbAxisX.bInStop := FALSE;
+stPlcFeeder.fbAxisX.bInJog := TRUE;
+stPlcFeeder.fbAxisX.fInOverride := LREAL#100;
+stPlcFeeder.fbAxisX.fInVelocity := stHmi.stManualMode.fVelocityX;
+stPlcFeeder.fbAxisX.bInJogForward := stHmi.stManualMode.bButtonForwardX;
+stPlcFeeder.fbAxisX.bInJogBackward := stHmi.stManualMode.bButtonBackwardX;
+
+stPlcFeeder.fbAxisY.bInStop := FALSE;
+stPlcFeeder.fbAxisY.bInJog := TRUE;
+stPlcFeeder.fbAxisY.fInOverride := LREAL#100;
+stPlcFeeder.fbAxisY.fInVelocity := stHmi.stManualMode.fVelocityY;
+stPlcFeeder.fbAxisY.bInJogForward := stHmi.stManualMode.bButtonForwardY;
+stPlcFeeder.fbAxisY.bInJogBackward := stHmi.stManualMode.bButtonBackwardY;
+
+stPlcFeeder.bCloseGripper := stHmi.stManualMode.bButtonCloseGripper;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_StationState" Id="{9ffdc3a8-1a54-45f5-b65a-b14b076079ab}">
+      <Declaration><![CDATA[METHOD M_StationState
+VAR_INPUT
+END_VAR
+
+VAR
+
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE stPlcFeeder.eStationState OF
+	E_StationState.eAuto:
+		M_Auto();
+	E_StationState.eManual:
+		M_Man();
+	E_StationState.eStop:
+		M_Stop();	
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Stop" Id="{dd2dccea-5f78-4894-a385-d9f6576e669f}" FolderPath="OpMode\">
+      <Declaration><![CDATA[METHOD M_Stop
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stPlcFeeder.fbAxisX.bInStop := TRUE;
+stPlcFeeder.fbAxisY.bInStop := TRUE;
+
+IF stHmi.nStationState_Request = 2 THEN
+	stPlcFeeder.eAutoState := E_FeederAutoState.eReset;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Feeder">
+      <LineId Id="1104" Count="11" />
+      <LineId Id="1174" Count="0" />
+      <LineId Id="1173" Count="0" />
+      <LineId Id="1175" Count="0" />
+      <LineId Id="1177" Count="2" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.FeederId.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.FeederId.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_Auto">
+      <LineId Id="141" Count="4" />
+      <LineId Id="139" Count="1" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="91" Count="22" />
+      <LineId Id="118" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoDrag">
+      <LineId Id="63" Count="2" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="5" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="72" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoDrop">
+      <LineId Id="34" Count="25" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="60" Count="5" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoMoveBackUp">
+      <LineId Id="24" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="39" Count="7" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="11" Count="3" />
+      <LineId Id="27" Count="3" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="31" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoMoveBackward">
+      <LineId Id="24" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="39" Count="7" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="11" Count="4" />
+      <LineId Id="28" Count="2" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="31" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoMoveDownForDragging">
+      <LineId Id="23" Count="2" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="39" Count="7" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="11" Count="3" />
+      <LineId Id="27" Count="3" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="31" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoMoveDownForDropping">
+      <LineId Id="24" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="39" Count="7" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="11" Count="3" />
+      <LineId Id="27" Count="3" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="31" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoMoveForward">
+      <LineId Id="23" Count="2" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="39" Count="7" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="11" Count="3" />
+      <LineId Id="27" Count="3" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="31" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoMoveUp">
+      <LineId Id="26" Count="0" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="35" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="11" Count="3" />
+      <LineId Id="37" Count="3" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="42" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_AutoReset">
+      <LineId Id="8" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="14" Count="14" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_Events">
+      <LineId Id="108" Count="2" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="111" Count="5" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="117" Count="5" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="123" Count="4" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="157" Count="1" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="133" Count="2" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="132" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_Hmi">
+      <LineId Id="67" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="9" Count="5" />
+      <LineId Id="17" Count="2" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="22" Count="3" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="63" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_Man">
+      <LineId Id="93" Count="0" />
+      <LineId Id="3" Count="2" />
+      <LineId Id="101" Count="1" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="97" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="108" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_StationState">
+      <LineId Id="3" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Feeder.M_Stop">
+      <LineId Id="3" Count="5" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

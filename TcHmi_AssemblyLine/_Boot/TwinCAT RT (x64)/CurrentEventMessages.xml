@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<TcEventSources Version="2">
+	<Source>
+		<GUID>{33EEA4E4-C24E-409E-AD92-E92EB98667EB}</GUID>
+		<Name LcId="1031">Montage Linie Events</Name>
+		<Name LcId="1033">Assembly Line Events</Name>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1031">Förderer {0} hat in den Automatik Betrieb gewechselt</Message>
+			<Message LcId="1033">Feeder {0} switched to automatic mode</Message>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1031">Förderer {0} gestoppt</Message>
+			<Message LcId="1033">Feeder {0} stopped</Message>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1031">Förderer {0} hat in den Hand Betrieb gewechselt</Message>
+			<Message LcId="1033">Feeder {0} switched to manual mode</Message>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1031">Neue Positionen für Förderer {0} geladen</Message>
+			<Message LcId="1033">New Positions for feeder {0} loaded</Message>
+		</Event>
+		<Event>
+			<Id>5</Id>
+			<Message LcId="1031">Förderer {0} Achse {1} hat eine Störung</Message>
+			<Message LcId="1033">Feeder {0}  axis {1} has an error</Message>
+		</Event>
+		<Event>
+			<Id>6</Id>
+			<Message LcId="1031">Es trat ein Fehler im Automatik Betrieb auf, im Schritt: {0}</Message>
+			<Message LcId="1033">An error occured during automatic mode in state: {0}</Message>
+		</Event>
+	</Source>
+</TcEventSources>

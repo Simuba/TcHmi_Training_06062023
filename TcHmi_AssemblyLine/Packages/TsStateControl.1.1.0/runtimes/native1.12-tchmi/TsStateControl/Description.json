@@ -1,0 +1,204 @@
+﻿{
+  "$schema": "../.hmiframework/Schema/ControlDescription.Schema.json",
+  "apiVersion": 1,
+  "name": "TsStateControl",
+  "namespace": "TcHmi.Controls.TsStateControl",
+  "displayName": "TsStateControl",
+  "version": {
+    "full": "1.0.0.0",
+    "major": 1,
+    "minor": 0,
+    "revision": 0,
+    "build": 0
+  },
+  "visible": true,
+  "themeable": "Standard",
+  "base": "TcHmi.Controls.System.TcHmiControl",
+  "description": "This description text will be used as a Tooltip in Visual Studio.",
+  "properties": {
+    "containerControl": false,
+    "geometry": {
+      "width": 350,
+      "height": 100
+    }
+  },
+  "template": "Template.html",
+  "icons": [
+    {
+      "name": "Icons/16x16.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "name": "Icons/24x24.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "name": "Icons/32x32.png",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "Icons/64x64.png",
+      "width": 64,
+      "height": 64
+    }
+  ],
+  "dependencyFiles": [
+    {
+      "name": "TsStateControl.js",
+      "type": "JavaScript",
+      "description": "Contains all the main logic."
+    },
+    {
+      "name": "Style.css",
+      "type": "Stylesheet",
+      "description": "Theme independent style"
+    }
+  ],
+  "themes": {
+    "Base": {
+      "resources": [
+        {
+          "name": "Themes/Base/Style.css",
+          "type": "Stylesheet",
+          "description": "Theme dependent style"
+        }
+      ]
+    }
+  },
+  "attributes": [
+    {
+      "name": "data-tchmi-type",
+      "displayName": "",
+      "propertyName": "type",
+      "propertySetterName": "",
+      "propertyGetterName": "getType",
+      "visible": false,
+      "type": "tchmi:framework#/definitions/ControlType",
+      "category": "None",
+      "description": "Type of the control.",
+      "requiredOnCompile": true,
+      "readOnly": true,
+      "bindable": false,
+      "heritable": false,
+      "defaultValue": "state-control",
+      "defaultValueInternal": null
+    },
+    {
+      "name": "data-tchmi-request-state",
+      "propertyName": "RequestState",
+      "propertySetterName": "setRequestState",
+      "propertyGetterName": "getRequestState",
+      "displayName": "Request State",
+      "visible": true,
+      "themeable": "Standard",
+      "displayPriority": 10,
+      "type": "tchmi:general#/definitions/Number",
+      "category": "Common",
+      "description": "Request state in plc",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "allowSymbolExpressionsInObject": true,
+      "defaultValue": "0",
+      "defaultValueInternal": "0"
+    },
+    {
+      "name": "data-tchmi-response-state",
+      "propertyName": "ResponseState",
+      "propertySetterName": "setResponseState",
+      "propertyGetterName": "getResponseState",
+      "displayName": "Response State",
+      "visible": true,
+      "themeable": "Standard",
+      "displayPriority": 11,
+      "type": "tchmi:general#/definitions/Number",
+      "category": "Common",
+      "description": "Response state from plc",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "allowSymbolExpressionsInObject": true,
+      "defaultValue": "0",
+      "defaultValueInternal": "0"
+    },
+    {
+      "name": "data-tchmi-orange-state",
+      "propertyName": "OrangeState",
+      "propertySetterName": "setOrangeState",
+      "propertyGetterName": "getOrangeState",
+      "displayName": "Orange State (0)",
+      "visible": true,
+      "themeable": "Standard",
+      "displayPriority": 14,
+      "type": "tchmi:general#/definitions/String",
+      "category": "Common",
+      "description": "Text of orange state",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "allowSymbolExpressionsInObject": true,
+      "defaultValue": "Stop",
+      "defaultValueInternal": "Stop"
+    },
+    {
+      "name": "data-tchmi-blue-state",
+      "propertyName": "Bluetate",
+      "propertySetterName": "setBlueState",
+      "propertyGetterName": "getBlueState",
+      "displayName": "Blue State (1)",
+      "visible": true,
+      "themeable": "Standard",
+      "displayPriority": 13,
+      "type": "tchmi:general#/definitions/String",
+      "category": "Common",
+      "description": "Text of blue state",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "allowSymbolExpressionsInObject": true,
+      "defaultValue": "Man.",
+      "defaultValueInternal": "Man."
+    },
+    {
+      "name": "data-tchmi-green-state",
+      "propertyName": "GreenState",
+      "propertySetterName": "setGreenState",
+      "propertyGetterName": "getGreenState",
+      "displayName": "Green State (2)",
+      "visible": true,
+      "themeable": "Standard",
+      "displayPriority": 12,
+      "type": "tchmi:general#/definitions/String",
+      "category": "Common",
+      "description": "Text of green state",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "allowSymbolExpressionsInObject": true,
+      "defaultValue": "Auto.",
+      "defaultValueInternal": "Auto."
+    }
+  ],
+  "attributeCategories": [],
+  "functions": [],
+  "events": [
+    {
+      "name": ".onRequestChanged",
+      "displayName": ".onRequestChanged",
+      "visible": true,
+      "displayPriority": 30,
+      "category": "Control",
+      "description": "This event is raised if the requested state was changed.",
+      "heritable": true,
+      "allowsPreventDefault": false
+    }
+  ],
+  "dataTypes": [
+    {
+      "schema": "Schema/Types.Schema.json"
+    }
+  ]
+}
