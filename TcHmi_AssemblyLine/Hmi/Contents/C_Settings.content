@@ -1,9 +1,47 @@
 <div id="C_Settings" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-creator-viewport-width="780" data-tchmi-creator-viewport-height="420">
 
 
-<script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
+
+<div id="TcHmiLocalizationSelect" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLocalizationSelect" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="477" data-tchmi-left-unit="px" data-tchmi-top="53" data-tchmi-top-unit="px" data-tchmi-width="264" data-tchmi-width-unit="px">
+<script data-tchmi-target-attribute="data-tchmi-localization-mapping" type="application/json">
+[
+  {
+    "code": "de",
+    "text": "German"
+  },
+  {
+    "code": "de-DE",
+    "text": "German (Germany)"
+  },
+  {
+    "code": "en",
+    "text": "English"
+  },
+  {
+    "code": "en-US",
+    "text": "English (United States)"
+  }
+]
+</script>
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
-  "color": "rgba(221, 147, 147, 1)"
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
 }
 </script>
+
+</div>
+<div id="TcHmiThemeSelect" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiThemeSelect" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="57" data-tchmi-left-unit="px" data-tchmi-top="53" data-tchmi-top-unit="px" data-tchmi-width="264" data-tchmi-width-unit="px">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
 </div>

@@ -110,6 +110,20 @@
   <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
   <Target Name="ReBuild" DependsOnTargets="Clean; Build" />
   <ItemGroup>
+    <Content Include="UserControls\UC_Axis.usercontrol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UserControls\UC_Axis.usercontrol.json">
+      <SubType>Content</SubType>
+      <DependentUpon>UserControls\UC_Axis.usercontrol</DependentUpon>
+    </Content>
+    <Content Include="UserControls\UC_Feeder.usercontrol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UserControls\UC_Feeder.usercontrol.json">
+      <SubType>Content</SubType>
+      <DependentUpon>UserControls\UC_Feeder.usercontrol</DependentUpon>
+    </Content>
     <Folder Include="Fonts\" />
     <Folder Include="Images" />
     <Folder Include="Images\Manifest" />
@@ -119,6 +133,7 @@
     <Folder Include="KeyboardLayouts\" />
     <Folder Include="Localization" />
     <Folder Include="Contents" />
+    <Folder Include="UserControls" />
     <Folder Include="Themes" />
     <Folder Include="Themes\Base-Dark\Images\" />
     <Folder Include="Themes\Base\" />
@@ -134,6 +149,23 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\C_Settings.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\transport-portal-pressed.svg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\de-DE.localization">
+      <SubType>Content</SubType>
+      <DependentUpon>Localization\de-DE.tpl.localization</DependentUpon>
+    </Content>
+    <Content Include="Localization\de-DE.tpl.localization">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\en-US.localization">
+      <SubType>Content</SubType>
+      <DependentUpon>Localization\en-US.tpl.localization</DependentUpon>
+    </Content>
+    <Content Include="Localization\en-US.tpl.localization">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Server\TcHmiLua\TcHmiLua.Config.default.json">
@@ -161,6 +193,12 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Server\TcHmiUserManagement\TcHmiUserManagement.Storage.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Themes\Base\TcHmi.Controls.ResponsiveNavigation.TcHmiNavigationBar\Images\menu.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Themes\Base\TcHmi.Controls.ResponsiveNavigation.TcHmiNavigationBar\Style.css">
       <SubType>Content</SubType>
     </Content>
     <Content Include="tsconfig.tpl.json">
@@ -278,24 +316,6 @@
       <SubType>Content</SubType>
       <Visible>true</Visible>
     </Content>
-    <Content Include="Localization\de.tpl.localization">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Localization\en.tpl.localization">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Localization\de.localization">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-      <DependentUpon>Localization\de.tpl.localization</DependentUpon>
-    </Content>
-    <Content Include="Localization\en.localization">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-      <DependentUpon>Localization\en.tpl.localization</DependentUpon>
-    </Content>
     <Content Include="KeyboardLayouts\German - compact.keyboard.json">
       <SubType>Content</SubType>
       <Visible>true</Visible>
@@ -404,6 +424,8 @@
       <Visible>false</Visible>
     </Content>
     <Folder Include="Themes\Base\Images\" />
+    <Folder Include="Themes\Base\TcHmi.Controls.ResponsiveNavigation.TcHmiNavigationBar\" />
+    <Folder Include="Themes\Base\TcHmi.Controls.ResponsiveNavigation.TcHmiNavigationBar\Images\" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

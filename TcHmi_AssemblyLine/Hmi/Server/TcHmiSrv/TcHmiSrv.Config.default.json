@@ -27,7 +27,141 @@
     "DEFAULTTIMEFORMATLOCALE": "client",
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
-    "DEFINITIONS": {},
+    "DEFINITIONS": {
+        "PLC1.E_AxisMode": {
+            "attributes": {
+                "generate_implicit_init_function": "",
+                "qualified_only": ""
+            },
+            "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "options": [
+                {
+                    "label": "INIT",
+                    "value": 0
+                },
+                {
+                    "label": "ENABLE",
+                    "value": 1
+                },
+                {
+                    "label": "JOG",
+                    "value": 2
+                },
+                {
+                    "label": "POSITIONING",
+                    "value": 3
+                },
+                {
+                    "label": "STOP",
+                    "value": 4
+                },
+                {
+                    "label": "RESET",
+                    "value": 5
+                },
+                {
+                    "label": "ERROR",
+                    "value": 6
+                }
+            ],
+            "type": "integer"
+        },
+        "PLC1.ST_HmiAxisInfo": {
+            "properties": {
+                "eAxisMode": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/PLC1.E_AxisMode"
+                        },
+                        {
+                            "comment": "Current mode of axis",
+                            "propertyOrder": 4
+                        }
+                    ]
+                },
+                "fActPosition": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/LREAL"
+                        },
+                        {
+                            "comment": "Actual position",
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "fActVelocity": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/LREAL"
+                        },
+                        {
+                            "comment": "Actual velocity",
+                            "propertyOrder": 2
+                        }
+                    ]
+                },
+                "nAxisState": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/UDINT"
+                        },
+                        {
+                            "comment": "Current state of axis",
+                            "propertyOrder": 3
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "PLC1.ST_HmiFeederInfo": {
+            "properties": {
+                "bGripperIsClosed": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "comment": "Information about the gripper",
+                            "propertyOrder": 3
+                        }
+                    ]
+                },
+                "stAxisX": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/PLC1.ST_HmiAxisInfo"
+                        },
+                        {
+                            "comment": "Bundled information about axis X",
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "stAxisY": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/PLC1.ST_HmiAxisInfo"
+                        },
+                        {
+                            "comment": "Bundled information about axis Y",
+                            "propertyOrder": 2
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        }
+    },
     "DEFLATECOMPRESSIONLEVEL": 5,
     "DIAGNOSTICS_DOMAINS": [],
     "DISABLED_CONFIGURATION_HINTS": [],
@@ -2534,6 +2668,60 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stFeederInfo",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ST_HmiFeederInfo"
+                    },
+                    {
+                        "comment": "Bundled feeder information",
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stFeederInfo::stAxisX",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ST_HmiAxisInfo"
+                    },
+                    {
+                        "comment": "Bundled information about axis X",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stFeederInfo::stAxisY",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ST_HmiAxisInfo"
+                    },
+                    {
+                        "comment": "Bundled information about axis Y",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "RefreshDefinitions": {
             "ACCESS": 3,
             "DOMAIN": "TcHmiSrv",
@@ -3455,6 +3643,9 @@
                 "Logout": 3,
                 "PLC1.MAIN.fbFeeder1.stHmi.nStationState_Request": 3,
                 "PLC1.MAIN.fbFeeder1.stHmi.nStationState_Respond": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteLogger.Diagnostics": 1,

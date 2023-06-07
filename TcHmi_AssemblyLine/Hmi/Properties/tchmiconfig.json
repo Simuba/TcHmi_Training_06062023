@@ -39,9 +39,16 @@
           "name": "Themes/Base/BaseStyle.css",
           "description": "",
           "type": "Stylesheet"
+        },
+        {
+          "name": "Themes/Base/TcHmi.Controls.ResponsiveNavigation.TcHmiNavigationBar/Style.css",
+          "description": "",
+          "type": "Stylesheet"
         }
       ],
-      "replacesThemeForControls": [],
+      "replacesThemeForControls": [
+        "TcHmi.Controls.ResponsiveNavigation.TcHmiNavigationBar"
+      ],
       "replacesThemeForPackageComponents": []
     }
   },
@@ -52,7 +59,14 @@
       "type": "Stylesheet"
     }
   ],
-  "userControls": [],
+  "userControls": [
+    {
+      "url": "UserControls/UC_Axis.usercontrol"
+    },
+    {
+      "url": "UserControls/UC_Feeder.usercontrol"
+    }
+  ],
   "content": [
     {
       "url": "Contents/C_Automatic.content",
@@ -85,8 +99,8 @@
   "trigger": [],
   "actionTemplates": [],
   "languages": {
-    "de": "Localization/de.localization",
-    "en": "Localization/en.localization"
+    "de-DE": "Localization/de-DE.localization",
+    "en-US": "Localization/en-US.localization"
   },
   "languageFallback": "",
   "disableLoadingOptimization": false,
@@ -135,14 +149,14 @@
   "systemKeyboard": {
     "providerName": "",
     "projectKeyboardMapping": {
-      "de": {
-        "text": "KeyboardLayouts/German - compact.keyboard.json",
-        "decimal": "KeyboardLayouts/Numpad (plusminus).keyboard.json",
+      "de-DE": {
+        "text": "",
+        "decimal": "",
         "numeric": ""
       },
-      "en": {
-        "text": "KeyboardLayouts/US - compact.keyboard.json",
-        "decimal": "KeyboardLayouts/Numpad (plusminus).keyboard.json",
+      "en-US": {
+        "text": "",
+        "decimal": "",
         "numeric": ""
       }
     }

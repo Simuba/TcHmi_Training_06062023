@@ -57,7 +57,14 @@
       "type": "JavaScript"
     }
   ],
-  "userControls": [],
+  "userControls": [
+    {
+      "url": "UserControls/UserControl1.usercontrol"
+    },
+    {
+      "url": "UserControls/UserControl2.usercontrol"
+    }
+  ],
   "content": [],
   "views": [
     {

@@ -1,9 +1,7 @@
 <div id="C_Automatic" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-creator-viewport-width="780" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-creator-viewport-height="420">
 
 
-<script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
-{
-  "color": "rgba(105, 201, 205, 1)"
-}
-</script>
+
+<div id="ucFeeder" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-target-user-control="UserControls/UC_Feeder.usercontrol" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-feederinfo="%s%PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo%/s%">
+</div>
 </div>

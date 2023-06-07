@@ -37,6 +37,41 @@
                     "function": true
                 }
             ]
+        },
+        "PLC1.ST_MyStruct": {
+            "properties": {
+                "iVal1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/INT"
+                        },
+                        {
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "iVal2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/INT"
+                        },
+                        {
+                            "propertyOrder": 2
+                        }
+                    ]
+                },
+                "iVal3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/INT"
+                        },
+                        {
+                            "propertyOrder": 3
+                        }
+                    ]
+                }
+            },
+            "type": "object"
         }
     },
     "DEFLATECOMPRESSIONLEVEL": 5,
@@ -45,8 +80,8 @@
     "DISCOVERY": 2,
     "ENABLE_SERVER_UPDATE": true,
     "ENDPOINTS": [
-        "http://127.0.0.1:13000",
-        "http://127.0.0.1:3000"
+        "http://127.0.0.1:13001",
+        "http://127.0.0.1:3001"
     ],
     "ETAGENABLED": true,
     "EXTENSIONS": {
@@ -2601,6 +2636,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.stStruct1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stStruct1",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/PLC1.ST_MyStruct"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.stext": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3778,6 +3823,7 @@
                 "PLC1.MAIN.fbAlarmingEx.bClear": 3,
                 "PLC1.MAIN.iAlarm": 3,
                 "PLC1.MAIN.iCounter": 3,
+                "PLC1.MAIN.stStruct1": 3,
                 "PLC1.MAIN.stext": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,

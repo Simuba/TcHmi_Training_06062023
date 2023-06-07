@@ -1,4 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "definitions": {}
+  "definitions": {
+    "UC_Axis": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "UserControls\\UC_Axis.usercontrol.json",
+      "id": "tchmi:project#/definitions/UC_Axis",
+      "type": "object"
+    },
+    "UC_Feeder": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "UserControls\\UC_Feeder.usercontrol.json",
+      "id": "tchmi:project#/definitions/UC_Feeder",
+      "type": "object"
+    }
+  }
 }

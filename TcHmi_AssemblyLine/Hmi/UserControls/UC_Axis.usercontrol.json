@@ -1,0 +1,43 @@
+{
+  "parameters": [
+    {
+      "name": "data-tchmi-axisinfo",
+      "displayName": "AxisInfo",
+      "allowSymbolExpressionsInObject": false,
+      "visible": true,
+      "type": "tchmi:server#/definitions/PLC1.ST_HmiAxisInfo",
+      "category": "Common",
+      "description": "",
+      "requiredOnCompile": false,
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "propertyName": "AxisInfo",
+      "propertySetterName": "setAxisInfo",
+      "propertyGetterName": "getAxisInfo",
+      "refTo": ""
+    },
+    {
+      "name": "data-tchmi-axisletter",
+      "displayName": "AxisLetter",
+      "allowSymbolExpressionsInObject": false,
+      "visible": true,
+      "type": "tchmi:general#/definitions/String",
+      "category": "Common",
+      "description": "",
+      "defaultValue": "?",
+      "defaultValueInternal": "?",
+      "requiredOnCompile": false,
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "propertyName": "AxisLetter",
+      "propertySetterName": "setAxisLetter",
+      "propertyGetterName": "getAxisLetter",
+      "refTo": ""
+    }
+  ],
+  "virtualRights": [],
+  "$schema": "./../../Packages/Beckhoff.TwinCAT.HMI.Framework.12.760.42/runtimes/native1.12-tchmi/Schema/UserControlConfig.Schema.json",
+  "description": ""
+}

@@ -1,3 +1,36 @@
 {
+  "controlTypeValues": {
+    "TcHmi.Controls.Beckhoff.TcHmiCombobox": {
+      "attributes": {
+        "DataHeight": 40.0,
+        "DropDownFontSize": 20.0
+      },
+      "themedResources": {}
+    }
+  },
+  "controlClassValues": {
+    "clickableImage": {
+      "attributes": {
+        "BorderRadius": null,
+        "BorderStyle": {
+          "left": "Solid",
+          "right": "Solid",
+          "top": "Solid",
+          "bottom": "Solid"
+        },
+        "BorderWidth": {
+          "left": 2,
+          "right": 2,
+          "top": 2,
+          "bottom": 2,
+          "leftUnit": "px",
+          "rightUnit": "px",
+          "topUnit": "px",
+          "bottomUnit": "px"
+        }
+      },
+      "themedResources": {}
+    }
+  },
   "$schema": "./../../../Packages/Beckhoff.TwinCAT.HMI.Framework.12.760.42/runtimes/native1.12-tchmi/Schema/ThemeDescription.Schema.json"
 }
