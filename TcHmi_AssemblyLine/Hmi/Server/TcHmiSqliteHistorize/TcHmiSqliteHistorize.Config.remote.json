@@ -1,0 +1,55 @@
+{
+    "enableBackup": false,
+    "historizedSymbolList": {
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX.fActPosition": {
+            "interval": "PT0.05S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX.fActVelocity": {
+            "interval": "PT0.05S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActPosition": {
+            "interval": "PT0.05S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActVelocity": {
+            "interval": "PT0.05S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActPosition": {
+            "interval": "PT0.05S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActVelocity": {
+            "interval": "PT0.05S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActPosition": {
+            "interval": "PT0.05S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActVelocity": {
+            "interval": "PT0.05S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        }
+    },
+    "inMemory": false,
+    "maxBackups": 1
+}

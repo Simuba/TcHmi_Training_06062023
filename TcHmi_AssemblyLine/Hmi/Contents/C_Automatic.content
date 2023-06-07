@@ -2,6 +2,93 @@
 
 
 
-<div id="ucFeeder" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-target-user-control="UserControls/UC_Feeder.usercontrol" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-feederinfo="%s%PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo%/s%">
+<div id="ucFeeder" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-target-user-control="UserControls/UC_Feeder.usercontrol" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-feederinfo="%s%PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo|Interval=50%/s%">
 </div>
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%i%SelectedFeeder%/i%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/Number",
+                  "symbolExpression": "%i%SelectedFeeder%/i%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Number",
+                  "value": 2.0
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "Function",
+                "active": true,
+                "fn": "TcHmi.Functions.Beckhoff.CreateBinding",
+                "fnParams": [
+                  {
+                    "objectType": "Symbol",
+                    "valueType": "tchmi:framework#/definitions/Control",
+                    "symbolExpression": "%ctrl%ucFeeder%/ctrl%"
+                  },
+                  {
+                    "objectType": "StaticValue",
+                    "valueType": "tchmi:framework#/definitions/ControlPropertyName",
+                    "value": "FeederInfo"
+                  },
+                  {
+                    "objectType": "Symbol",
+                    "valueType": "tchmi:general#/definitions/String",
+                    "symbolExpression": "%s%PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo|Interval=50%/s%"
+                  }
+                ],
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "Function",
+                "active": true,
+                "fn": "TcHmi.Functions.Beckhoff.CreateBinding",
+                "fnParams": [
+                  {
+                    "objectType": "Symbol",
+                    "valueType": "tchmi:framework#/definitions/Control",
+                    "symbolExpression": "%ctrl%ucFeeder%/ctrl%"
+                  },
+                  {
+                    "objectType": "StaticValue",
+                    "valueType": "tchmi:framework#/definitions/ControlPropertyName",
+                    "value": "FeederInfo"
+                  },
+                  {
+                    "objectType": "Symbol",
+                    "valueType": "tchmi:general#/definitions/String",
+                    "symbolExpression": "%s%PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo|Interval=50%/s%"
+                  }
+                ],
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
 </div>

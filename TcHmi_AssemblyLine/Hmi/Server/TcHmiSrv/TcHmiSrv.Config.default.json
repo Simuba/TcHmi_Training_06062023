@@ -181,6 +181,13 @@
             "REQUIRED": true,
             "STARTUPTYPE": 1
         },
+        "TcHmiEventLogger": {
+            "ENABLED": true,
+            "NAME": "TcHmiEventLogger",
+            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.EventLogger.19.0.101\\runtimes\\win-x64\\native\\",
+            "REQUIRED": false,
+            "STARTUPTYPE": 1
+        },
         "TcHmiLua": {
             "ENABLED": true,
             "NAME": "TcHmiLua",
@@ -188,6 +195,13 @@
             "PROCESSID": -1,
             "REQUIRED": true,
             "STARTUPTYPE": 0
+        },
+        "TcHmiSqliteHistorize": {
+            "ENABLED": true,
+            "NAME": "TcHmiSqliteHistorize",
+            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.SqliteHistorize.19.0.101\\runtimes\\win-x64\\native\\",
+            "REQUIRED": false,
+            "STARTUPTYPE": 1
         },
         "TcHmiSqliteLogger": {
             "ENABLED": true,
@@ -2704,6 +2718,42 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX.fActPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stFeederInfo::stAxisX::fActPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Actual position",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX.fActVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stFeederInfo::stAxisX::fActVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Actual velocity",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2716,6 +2766,167 @@
                     },
                     {
                         "comment": "Bundled information about axis Y",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stFeederInfo::stAxisY::fActPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Actual position",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stFeederInfo::stAxisY::fActVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Actual velocity",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.nStationState_Request": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder2::stHmi::nStationState_Request",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "Operation mode",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.nStationState_Respond": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder2::stHmi::nStationState_Respond",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder2::stHmi::stFeederInfo",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ST_HmiFeederInfo"
+                    },
+                    {
+                        "comment": "Bundled feeder information",
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder2::stHmi::stFeederInfo::stAxisX::fActPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Actual position",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder2::stHmi::stFeederInfo::stAxisX::fActVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Actual velocity",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder2::stHmi::stFeederInfo::stAxisY::fActPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Actual position",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder2::stHmi::stFeederInfo::stAxisY::fActVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Actual velocity",
                         "propertyOrder": 2
                     }
                 ]
@@ -3037,6 +3248,138 @@
             },
             "USEMAPPING": true
         },
+        "TcHmiEventLogger.ClearLoggedEvents": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEventLogger",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ClearLoggedEvents",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "targetName": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "targetName"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEventLogger.Config": {
+            "ACCESS": 0,
+            "DOMAIN": "TcHmiEventLogger",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Config",
+            "OPTIONS": {},
+            "SCHEMA": {},
+            "USEMAPPING": true
+        },
+        "TcHmiEventLogger.Diagnostics": {
+            "ACCESS": 1,
+            "DOMAIN": "TcHmiEventLogger",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Diagnostics",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "TARGET_SYSTEMS": {
+                        "additionalProperties": {
+                            "properties": {
+                                "activeAlarmsCount": {
+                                    "propertyOrder": 10,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "cachedAlarmsCount": {
+                                    "hidden": true,
+                                    "propertyOrder": 8,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "cachedInvalidAlarmsCount": {
+                                    "hidden": true,
+                                    "propertyOrder": 9,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "cachedMessagesCount": {
+                                    "hidden": true,
+                                    "propertyOrder": 7,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "connectError": {
+                                    "propertyOrder": 2,
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "connectionState": {
+                                    "propertyOrder": 1,
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "importedAlarmsCount": {
+                                    "propertyOrder": 5,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "importedEventsCount": {
+                                    "propertyOrder": 3,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "importedInvalidAlarmsCount": {
+                                    "propertyOrder": 6,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "importedMessagesCount": {
+                                    "propertyOrder": 4,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                }
+                            },
+                            "readOnly": true,
+                            "required": [
+                                "connectionState"
+                            ],
+                            "type": "object"
+                        },
+                        "description": "DESC_TARGET_SYSTEM",
+                        "readOnly": true,
+                        "type": "object"
+                    }
+                },
+                "readOnly": true,
+                "type": "object"
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEventLogger.ListEnabledTargetSystems": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEventLogger",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ListEnabledTargetSystems",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "USEMAPPING": true
+        },
         "TcHmiLua.Config": {
             "ACCESS": 0,
             "DOMAIN": "TcHmiLua",
@@ -3045,6 +3388,271 @@
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "USEMAPPING": true
+        },
+        "TcHmiSqliteHistorize.Config": {
+            "ACCESS": 0,
+            "DOMAIN": "TcHmiSqliteHistorize",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Config",
+            "OPTIONS": {},
+            "SCHEMA": {},
+            "USEMAPPING": true
+        },
+        "TcHmiSqliteHistorize.DeleteDatabaseEntries": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSqliteHistorize",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "DeleteDatabaseEntries",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "disableRecording": {
+                            "type": "boolean"
+                        },
+                        "symbolName": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiSqliteHistorize.Diagnostics": {
+            "ACCESS": 1,
+            "DOMAIN": "TcHmiSqliteHistorize",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Diagnostics",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "additionalProperties": false,
+                "function": true,
+                "properties": {
+                    "databaseSize": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/Number"
+                            },
+                            {
+                                "displayClass": "byte",
+                                "propertyOrder": 1,
+                                "readOnly": true
+                            }
+                        ]
+                    },
+                    "estimatedDatabaseSize": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/Number"
+                            },
+                            {
+                                "displayClass": "byte",
+                                "propertyOrder": 5,
+                                "readOnly": true
+                            }
+                        ]
+                    },
+                    "estimatedDatabaseSizePerSymbol": {
+                        "additionalProperties": {
+                            "allOf": [
+                                {
+                                    "$ref": "tchmi:general#/definitions/Number"
+                                },
+                                {
+                                    "displayClass": "byte",
+                                    "readOnly": true
+                                }
+                            ]
+                        },
+                        "readOnly": true,
+                        "type": "object"
+                    },
+                    "numEntries": {
+                        "configDescription": "descNumEntries",
+                        "propertyOrder": 2,
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "numEntriesLifetime": {
+                        "configDescription": "descNumEntries",
+                        "propertyOrder": 3,
+                        "readOnly": true,
+                        "type": "number"
+                    },
+                    "recordingTime": {
+                        "format": "timespan",
+                        "propertyOrder": 4,
+                        "readOnly": true,
+                        "type": "string"
+                    }
+                },
+                "readOnly": true,
+                "type": "object"
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiSqliteHistorize.GetTrendLineData": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSqliteHistorize",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetTrendLineData",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "axesData": {
+                        "description": "descAxisData",
+                        "items": {
+                            "items": {
+                                "properties": {
+                                    "error": {
+                                        "type": "number"
+                                    },
+                                    "flags": {
+                                        "description": "descAxisDataFlags",
+                                        "type": "string"
+                                    },
+                                    "x": {
+                                        "description": "descAxisDataX",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "y": {
+                                        "description": "descAxisDataY",
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object",
+                "writeValue": {
+                    "properties": {
+                        "chartName": {
+                            "description": "descChartName",
+                            "type": "string"
+                        },
+                        "displayWidth": {
+                            "minimum": 2.0,
+                            "type": "number"
+                        },
+                        "xAxisEnd": {
+                            "$ref": "tchmi:server#/definitions/stringTypeArray"
+                        },
+                        "xAxisStart": {
+                            "$ref": "tchmi:server#/definitions/stringTypeArray"
+                        },
+                        "yAxes": {
+                            "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "symbol": {
+                                        "description": "descSymbolName",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "symbol"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "chartName",
+                        "yAxes",
+                        "xAxisStart",
+                        "displayWidth"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiSqliteHistorize.GetTrendLineWindow": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSqliteHistorize",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetTrendLineWindow",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "xAxisEnd": {
+                        "description": "descTrendLineAxisEndX",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "xAxisStart": {
+                        "description": "descTrendLineAxisStartX",
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "writeValue": {
+                    "properties": {
+                        "chartName": {
+                            "description": "descChartName",
+                            "type": "string"
+                        },
+                        "xAxisEnd": {
+                            "$ref": "tchmi:server#/definitions/stringTypeArray"
+                        },
+                        "xAxisStart": {
+                            "$ref": "tchmi:server#/definitions/stringTypeArray"
+                        },
+                        "yAxes": {
+                            "description": "descTrendLineAxisY",
+                            "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "symbol": {
+                                        "description": "descSymbolName",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "symbol"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "chartName",
+                        "yAxes",
+                        "xAxisStart"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiSqliteHistorize.HistorizeData": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSqliteHistorize",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "HistorizeData",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true
+            },
             "USEMAPPING": true
         },
         "TcHmiSqliteLogger.Clear": {
@@ -3645,9 +4253,27 @@
                 "PLC1.MAIN.fbFeeder1.stHmi.nStationState_Respond": 3,
                 "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo": 3,
                 "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX.fActPosition": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX.fActVelocity": 3,
                 "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActPosition": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActVelocity": 3,
+                "PLC1.MAIN.fbFeeder2.stHmi.nStationState_Request": 3,
+                "PLC1.MAIN.fbFeeder2.stHmi.nStationState_Respond": 3,
+                "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo": 3,
+                "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActPosition": 3,
+                "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActVelocity": 3,
+                "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActPosition": 3,
+                "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActVelocity": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
+                "TcHmiEventLogger.Diagnostics": 1,
+                "TcHmiEventLogger.ListEnabledTargetSystems": 3,
+                "TcHmiSqliteHistorize.DeleteDatabaseEntries": 3,
+                "TcHmiSqliteHistorize.Diagnostics": 1,
+                "TcHmiSqliteHistorize.GetTrendLineData": 3,
+                "TcHmiSqliteHistorize.GetTrendLineWindow": 3,
+                "TcHmiSqliteHistorize.HistorizeData": 3,
                 "TcHmiSqliteLogger.Diagnostics": 1,
                 "TcHmiUserManagement.ChangePassword": 3,
                 "Unsubscribe": 3,

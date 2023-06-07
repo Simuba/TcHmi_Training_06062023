@@ -110,6 +110,30 @@
   <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
   <Target Name="ReBuild" DependsOnTargets="Clean; Build" />
   <ItemGroup>
+    <Content Include="Contents\C_Events.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\C_Historize.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Config.default.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Config.remote.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Storage.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiSqliteHistorize\TcHmiSqliteHistorize.Config.default.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiSqliteHistorize\TcHmiSqliteHistorize.Config.remote.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiSqliteHistorize\TcHmiSqliteHistorize.Storage.json">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="UserControls\UC_Axis.usercontrol">
       <SubType>Content</SubType>
     </Content>
@@ -133,6 +157,8 @@
     <Folder Include="KeyboardLayouts\" />
     <Folder Include="Localization" />
     <Folder Include="Contents" />
+    <Folder Include="Server\TcHmiEventLogger" />
+    <Folder Include="Server\TcHmiSqliteHistorize" />
     <Folder Include="UserControls" />
     <Folder Include="Themes" />
     <Folder Include="Themes\Base-Dark\Images\" />

@@ -81,6 +81,20 @@
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
+    },
+    {
+      "url": "Contents/C_Historize.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/C_Events.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
     }
   ],
   "views": [
@@ -93,11 +107,398 @@
   ],
   "userFunctions": [],
   "symbols": {
-    "internal": {},
+    "internal": {
+      "SelectedFeeder": {
+        "value": 1.0,
+        "type": "tchmi:general#/definitions/Number",
+        "persist": true,
+        "readonly": false
+      },
+      "LineGraph_F01_X": {
+        "value": [
+          {
+            "yAxisId": 1,
+            "legendName": "",
+            "scaleFactor": 1.0,
+            "showAxis": true,
+            "lineWidth": 1,
+            "pointDot": false,
+            "pointDotRadius": 3,
+            "pointDotStrokeWidth": 1,
+            "lineColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotFillColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotStrokeColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotInStopMode": true,
+            "fillMode": "None",
+            "fillColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "fillTransparency": 50.0,
+            "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX.fActPosition"
+          },
+          {
+            "yAxisId": 2,
+            "legendName": "",
+            "scaleFactor": 1.0,
+            "showAxis": true,
+            "lineWidth": 1,
+            "pointDot": false,
+            "pointDotRadius": 3,
+            "pointDotStrokeWidth": 1,
+            "lineColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotFillColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotStrokeColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotInStopMode": true,
+            "fillMode": "None",
+            "fillColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "fillTransparency": 50.0,
+            "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisX.fActVelocity"
+          }
+        ],
+        "type": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiTrendLineChart.ChartLineGraphDescriptionDefinitionList",
+        "persist": false,
+        "readonly": false
+      },
+      "LineGraph_F01_Y": {
+        "value": [
+          {
+            "yAxisId": 1,
+            "legendName": "",
+            "scaleFactor": 1.0,
+            "showAxis": true,
+            "lineWidth": 1,
+            "pointDot": false,
+            "pointDotRadius": 3,
+            "pointDotStrokeWidth": 1,
+            "lineColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotFillColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotStrokeColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotInStopMode": true,
+            "fillMode": "None",
+            "fillColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "fillTransparency": 50.0,
+            "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActPosition"
+          },
+          {
+            "yAxisId": 2,
+            "legendName": "",
+            "scaleFactor": 1.0,
+            "showAxis": true,
+            "lineWidth": 1,
+            "pointDot": false,
+            "pointDotRadius": 3,
+            "pointDotStrokeWidth": 1,
+            "lineColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotFillColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotStrokeColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotInStopMode": true,
+            "fillMode": "None",
+            "fillColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "fillTransparency": 50.0,
+            "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActVelocity"
+          }
+        ],
+        "type": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiTrendLineChart.ChartLineGraphDescriptionDefinitionList",
+        "persist": false,
+        "readonly": false
+      },
+      "LineGraph_F02_X": {
+        "value": [
+          {
+            "yAxisId": 1,
+            "legendName": "",
+            "scaleFactor": 1.0,
+            "showAxis": true,
+            "lineWidth": 1,
+            "pointDot": false,
+            "pointDotRadius": 3,
+            "pointDotStrokeWidth": 1,
+            "lineColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotFillColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotStrokeColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotInStopMode": true,
+            "fillMode": "None",
+            "fillColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "fillTransparency": 50.0,
+            "symbol": "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActPosition"
+          },
+          {
+            "yAxisId": 2,
+            "legendName": "",
+            "scaleFactor": 1.0,
+            "showAxis": true,
+            "lineWidth": 1,
+            "pointDot": false,
+            "pointDotRadius": 3,
+            "pointDotStrokeWidth": 1,
+            "lineColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotFillColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotStrokeColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotInStopMode": true,
+            "fillMode": "None",
+            "fillColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "fillTransparency": 50.0,
+            "symbol": "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActVelocity"
+          }
+        ],
+        "type": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiTrendLineChart.ChartLineGraphDescriptionDefinitionList",
+        "persist": false,
+        "readonly": false
+      },
+      "LineGraph_F02_Y": {
+        "value": [
+          {
+            "yAxisId": 1,
+            "legendName": "",
+            "scaleFactor": 1.0,
+            "showAxis": true,
+            "lineWidth": 1,
+            "pointDot": false,
+            "pointDotRadius": 3,
+            "pointDotStrokeWidth": 1,
+            "lineColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotFillColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotStrokeColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "pointDotInStopMode": true,
+            "fillMode": "None",
+            "fillColor": {
+              "color": "rgba(71, 148, 218, 1)"
+            },
+            "fillTransparency": 50.0,
+            "symbol": "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActPosition"
+          },
+          {
+            "yAxisId": 2,
+            "legendName": "",
+            "scaleFactor": 1.0,
+            "showAxis": true,
+            "lineWidth": 1,
+            "pointDot": false,
+            "pointDotRadius": 3,
+            "pointDotStrokeWidth": 1,
+            "lineColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotFillColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotStrokeColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "pointDotInStopMode": true,
+            "fillMode": "None",
+            "fillColor": {
+              "color": "rgba(218, 141, 71, 1)"
+            },
+            "fillTransparency": 50.0,
+            "symbol": "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActVelocity"
+          }
+        ],
+        "type": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiTrendLineChart.ChartLineGraphDescriptionDefinitionList",
+        "persist": false,
+        "readonly": false
+      }
+    },
     "themedResources": {}
   },
   "trigger": [],
-  "actionTemplates": [],
+  "actionTemplates": [
+    {
+      "displayname": "SwitchTrendLineChart",
+      "name": "SwitchTrendLineChart",
+      "category": "Action Templates",
+      "actions": [
+        {
+          "objectType": "Condition",
+          "active": true,
+          "parts": [
+            {
+              "if": [
+                {
+                  "compare1": {
+                    "objectType": "Symbol",
+                    "valueType": "tchmi:general#/definitions/Number",
+                    "symbolExpression": "%i%SelectedFeeder%/i%"
+                  },
+                  "compare2": {
+                    "objectType": "StaticValue",
+                    "valueType": "tchmi:general#/definitions/Number",
+                    "value": 2.0
+                  },
+                  "compareOperator": "==",
+                  "logic": null
+                }
+              ],
+              "then": [
+                {
+                  "objectType": "SwitchCase",
+                  "active": true,
+                  "compare": {
+                    "objectType": "Symbol",
+                    "valueType": "tchmi:general#/definitions/UDINT",
+                    "symbolExpression": "%ctrl%TcHmiCombobox::SelectedId%/ctrl%"
+                  },
+                  "cases": [
+                    {
+                      "caseValue": {
+                        "objectType": "StaticValue",
+                        "valueType": "tchmi:general#/definitions/UDINT",
+                        "value": 1
+                      },
+                      "actions": [
+                        {
+                          "objectType": "WriteToSymbol",
+                          "active": true,
+                          "symbolExpression": "%ctrl%TcHmiTrendLineChart::LineGraphDescription%/ctrl%",
+                          "value": {
+                            "objectType": "Symbol",
+                            "valueType": "tchmi:general#/definitions/String",
+                            "symbolExpression": "%i%LineGraph_F02_X%/i%"
+                          },
+                          "asyncWait": true
+                        }
+                      ]
+                    },
+                    {
+                      "caseValue": {
+                        "objectType": "StaticValue",
+                        "valueType": "tchmi:general#/definitions/UDINT",
+                        "value": 2
+                      },
+                      "actions": [
+                        {
+                          "objectType": "WriteToSymbol",
+                          "active": true,
+                          "symbolExpression": "%ctrl%TcHmiTrendLineChart::LineGraphDescription%/ctrl%",
+                          "value": {
+                            "objectType": "Symbol",
+                            "valueType": "tchmi:general#/definitions/String",
+                            "symbolExpression": "%i%LineGraph_F02_Y%/i%"
+                          },
+                          "asyncWait": true
+                        }
+                      ]
+                    }
+                  ],
+                  "asyncWait": true
+                }
+              ]
+            },
+            {
+              "else": [
+                {
+                  "objectType": "SwitchCase",
+                  "active": true,
+                  "compare": {
+                    "objectType": "Symbol",
+                    "valueType": "tchmi:general#/definitions/UDINT",
+                    "symbolExpression": "%ctrl%TcHmiCombobox::SelectedId%/ctrl%"
+                  },
+                  "cases": [
+                    {
+                      "caseValue": {
+                        "objectType": "StaticValue",
+                        "valueType": "tchmi:general#/definitions/UDINT",
+                        "value": 1
+                      },
+                      "actions": [
+                        {
+                          "objectType": "WriteToSymbol",
+                          "active": true,
+                          "symbolExpression": "%ctrl%TcHmiTrendLineChart::LineGraphDescription%/ctrl%",
+                          "value": {
+                            "objectType": "Symbol",
+                            "valueType": "tchmi:general#/definitions/String",
+                            "symbolExpression": "%i%LineGraph_F01_X%/i%"
+                          },
+                          "asyncWait": true
+                        }
+                      ]
+                    },
+                    {
+                      "caseValue": {
+                        "objectType": "StaticValue",
+                        "valueType": "tchmi:general#/definitions/UDINT",
+                        "value": 2
+                      },
+                      "actions": [
+                        {
+                          "objectType": "WriteToSymbol",
+                          "active": true,
+                          "symbolExpression": "%ctrl%TcHmiTrendLineChart::LineGraphDescription%/ctrl%",
+                          "value": {
+                            "objectType": "Symbol",
+                            "valueType": "tchmi:general#/definitions/String",
+                            "symbolExpression": "%i%LineGraph_F01_Y%/i%"
+                          },
+                          "asyncWait": true
+                        }
+                      ]
+                    }
+                  ],
+                  "asyncWait": true
+                }
+              ]
+            }
+          ],
+          "asyncWait": true
+        }
+      ],
+      "parameters": []
+    }
+  ],
   "languages": {
     "de-DE": "Localization/de-DE.localization",
     "en-US": "Localization/en-US.localization"
