@@ -41,6 +41,18 @@
         }
       },
       "type": "object"
+    },
+    "Symbol_Of_TcHmi.Controls.Beckhoff.TcHmiDatagrid": {
+      "allOf": [
+        {
+          "$ref": "tchmi:framework#/definitions/Symbol"
+        },
+        {
+          "frameworkSymbolSubType": {
+            "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiDatagrid"
+          }
+        }
+      ]
     }
   }
 }

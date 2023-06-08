@@ -116,6 +116,9 @@
     <Content Include="Contents\C_Historize.content">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Contents\C_Recipe.content">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Config.default.json">
       <SubType>Content</SubType>
     </Content>
@@ -123,6 +126,15 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Storage.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiRecipeManagement\TcHmiRecipeManagement.Config.default.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiRecipeManagement\TcHmiRecipeManagement.Config.remote.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiRecipeManagement\TcHmiRecipeManagement.Storage.json">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Server\TcHmiSqliteHistorize\TcHmiSqliteHistorize.Config.default.json">
@@ -158,6 +170,7 @@
     <Folder Include="Localization" />
     <Folder Include="Contents" />
     <Folder Include="Server\TcHmiEventLogger" />
+    <Folder Include="Server\TcHmiRecipeManagement" />
     <Folder Include="Server\TcHmiSqliteHistorize" />
     <Folder Include="UserControls" />
     <Folder Include="Themes" />

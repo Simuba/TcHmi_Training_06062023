@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ST_Point" Id="{dfcc0369-15ad-48aa-8c88-2294f0f643cf}" SpecialFunc="None">
+    <Declaration><![CDATA[TYPE ST_Point :
+STRUCT
+	x : INT;
+	y : INT;
+END_STRUCT
+END_TYPE]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="ST_Point">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

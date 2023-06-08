@@ -28,6 +28,39 @@
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
     "DEFINITIONS": {
+        "PLC1.ARRAY_0..99_OF-INT": {
+            "items": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "maxItems": 100,
+            "minItems": 100,
+            "type": "array"
+        },
+        "PLC1.ARRAY_0..99_OF-ST_MyStruct": {
+            "items": {
+                "$ref": "#/definitions/PLC1.ST_MyStruct"
+            },
+            "maxItems": 100,
+            "minItems": 100,
+            "type": "array"
+        },
+        "PLC1.ARRAY_1..2_1..100_OF-ST_Point": {
+            "displayAsMatrix": 2,
+            "items": {
+                "allowMapping": false,
+                "items": {
+                    "$ref": "#/definitions/PLC1.ST_Point"
+                },
+                "maxItems": 100,
+                "minItems": 100,
+                "startOffset": 1,
+                "type": "array"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "startOffset": 1,
+            "type": "array"
+        },
         "PLC1.METHOD-RETURNING-BOOL": {
             "allOf": [
                 {
@@ -40,7 +73,7 @@
         },
         "PLC1.ST_MyStruct": {
             "properties": {
-                "iVal1": {
+                "xxxx": {
                     "allOf": [
                         {
                             "$ref": "tchmi:general#/definitions/INT"
@@ -50,7 +83,7 @@
                         }
                     ]
                 },
-                "iVal2": {
+                "yyyy": {
                     "allOf": [
                         {
                             "$ref": "tchmi:general#/definitions/INT"
@@ -59,14 +92,29 @@
                             "propertyOrder": 2
                         }
                     ]
-                },
-                "iVal3": {
+                }
+            },
+            "type": "object"
+        },
+        "PLC1.ST_Point": {
+            "properties": {
+                "x": {
                     "allOf": [
                         {
                             "$ref": "tchmi:general#/definitions/INT"
                         },
                         {
-                            "propertyOrder": 3
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "y": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/INT"
+                        },
+                        {
+                            "propertyOrder": 2
                         }
                     ]
                 }
@@ -2559,6 +2607,26 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.LineChart_Old.aPoints": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LineChart_Old::aPoints",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/PLC1.ARRAY_1..2_1..100_OF-ST_Point"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.arrData": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::arrData",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/PLC1.ARRAY_0..99_OF-INT"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.bAlarm": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3816,6 +3884,8 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "PLC1.LineChart_Old.aPoints": 3,
+                "PLC1.MAIN.arrData": 3,
                 "PLC1.MAIN.bAlarm": 3,
                 "PLC1.MAIN.bReset": 3,
                 "PLC1.MAIN.bToggle": 3,

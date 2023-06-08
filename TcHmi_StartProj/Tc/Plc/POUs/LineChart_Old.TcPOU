@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="LineChart_Old" Id="{c343370e-ed4e-439d-b59d-c9094be06877}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LineChart_Old
+VAR
+	aPoints : ARRAY [1..2,1..100] OF ST_Point;
+	
+	bInit : BOOL := TRUE;
+	nCounter: INT;
+	nValue1 : INT := 1;
+	nValue2 : INT := -1;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bInit THEN
+	FOR nCounter := 1 TO 100 DO
+		aPoints[1, nCounter].x := nCounter;
+		aPoints[2, nCounter].x := nCounter;
+		aPoints[2, nCounter].y := 100;
+	END_FOR
+	
+	bInit := FALSE;
+END_IF
+
+// graph 1
+FOR nCounter := 100 TO 2 BY -1 DO
+	aPoints[1, nCounter].y := aPoints[1, nCounter - 1].y;
+END_FOR
+
+aPoints[1, 1].y := aPoints[1, 1].y + nValue1;
+
+IF aPoints[1, 1].y = 100 THEN
+	nValue1 := -1;
+ELSIF aPoints[1, 1].y = 1 THEN
+	nValue1 := 1;
+END_IF 
+
+// graph 2
+FOR nCounter := 100 TO 2 BY -1 DO
+	aPoints[2, nCounter].y := aPoints[2, nCounter - 1].y;
+END_FOR
+
+aPoints[2, 1].y := aPoints[2, 1].y + nValue2;
+
+IF aPoints[2, 1].y = 100 THEN
+	nValue2 := -1;
+ELSIF aPoints[2, 1].y = 1 THEN
+	nValue2 := 1;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="LineChart_Old">
+      <LineId Id="12" Count="33" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

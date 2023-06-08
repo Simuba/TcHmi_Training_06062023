@@ -160,6 +160,88 @@
                 }
             },
             "type": "object"
+        },
+        "PLC1.ST_HmiFeederRecipe": {
+            "properties": {
+                "fTarget1PositionX": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/LREAL"
+                        },
+                        {
+                            "comment": "Target 1 positon for X axis",
+                            "propertyOrder": 2
+                        }
+                    ]
+                },
+                "fTarget1PositionY": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/LREAL"
+                        },
+                        {
+                            "comment": "Target 1 position for Y axis",
+                            "propertyOrder": 3
+                        }
+                    ]
+                },
+                "fTarget2PositionX": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/LREAL"
+                        },
+                        {
+                            "comment": "Target 2 positon for X axis",
+                            "propertyOrder": 5
+                        }
+                    ]
+                },
+                "fTarget2PositionY": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/LREAL"
+                        },
+                        {
+                            "comment": "Target 2 position for Y axis",
+                            "propertyOrder": 6
+                        }
+                    ]
+                },
+                "fVelocity": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/LREAL"
+                        },
+                        {
+                            "comment": "Velocity of both axis",
+                            "propertyOrder": 7
+                        }
+                    ]
+                },
+                "sTarget1Name": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "comment": "Target 1 name",
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "sTarget2Name": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "comment": "Target 2 name",
+                            "propertyOrder": 4
+                        }
+                    ]
+                }
+            },
+            "type": "object"
         }
     },
     "DEFLATECOMPRESSIONLEVEL": 5,
@@ -195,6 +277,13 @@
             "PROCESSID": -1,
             "REQUIRED": true,
             "STARTUPTYPE": 0
+        },
+        "TcHmiRecipeManagement": {
+            "ENABLED": true,
+            "NAME": "TcHmiRecipeManagement",
+            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.RecipeManagement.19.0.101\\runtimes\\win-x64\\native\\",
+            "REQUIRED": false,
+            "STARTUPTYPE": 1
         },
         "TcHmiSqliteHistorize": {
             "ENABLED": true,
@@ -2808,6 +2897,132 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget1PositionX": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stRecipeManagement::stFeederRecipe::fTarget1PositionX",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Target 1 positon for X axis",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget1PositionY": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stRecipeManagement::stFeederRecipe::fTarget1PositionY",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Target 1 position for Y axis",
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget2PositionX": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stRecipeManagement::stFeederRecipe::fTarget2PositionX",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Target 2 positon for X axis",
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget2PositionY": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stRecipeManagement::stFeederRecipe::fTarget2PositionY",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Target 2 position for Y axis",
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stRecipeManagement::stFeederRecipe::fVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Velocity of both axis",
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.sTarget1Name": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stRecipeManagement::stFeederRecipe::sTarget1Name",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                    },
+                    {
+                        "comment": "Target 1 name",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.sTarget2Name": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder1::stHmi::stRecipeManagement::stFeederRecipe::sTarget2Name",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                    },
+                    {
+                        "comment": "Target 2 name",
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.fbFeeder2.stHmi.nStationState_Request": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2927,6 +3142,24 @@
                     },
                     {
                         "comment": "Actual velocity",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbFeeder2.stHmi.stRecipeManagement.stFeederRecipe": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbFeeder2::stHmi::stRecipeManagement::stFeederRecipe",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ST_HmiFeederRecipe"
+                    },
+                    {
+                        "comment": "Feeder recipe data",
                         "propertyOrder": 2
                     }
                 ]
@@ -3388,6 +3621,190 @@
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "USEMAPPING": true
+        },
+        "TcHmiRecipeManagement.ActivateRecipe": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiRecipeManagement",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ActivateRecipe",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "path"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiRecipeManagement.Config": {
+            "ACCESS": 0,
+            "DOMAIN": "TcHmiRecipeManagement",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Config",
+            "OPTIONS": {},
+            "SCHEMA": {},
+            "USEMAPPING": true
+        },
+        "TcHmiRecipeManagement.GetActiveRecipes": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiRecipeManagement",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetActiveRecipes",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "items": {
+                    "recipe": {
+                        "type": "string"
+                    }
+                },
+                "type": "array",
+                "writeValue": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "description": "recipe name(s)",
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/VOID"
+                        }
+                    ]
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiRecipeManagement.GetRecipes": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiRecipeManagement",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetRecipes",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "items": {
+                    "recipes": {
+                        "type": "string"
+                    }
+                },
+                "type": "array",
+                "writeValue": {
+                    "properties": {
+                        "recipeTypePath": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "recipeTypePath"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiRecipeManagement.ListRecipeTypes": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiRecipeManagement",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ListRecipeTypes",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiRecipeManagement.ListRecipes": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiRecipeManagement",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ListRecipes",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiRecipeManagement.ReadFromTarget": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiRecipeManagement",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ReadFromTarget",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "path": {
+                        "type": "string"
+                    },
+                    "values": {
+                        "additionalProperties": {},
+                        "type": "object"
+                    }
+                },
+                "type": "object",
+                "writeValue": {
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "path"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiRecipeManagement.UpdateRecipe": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiRecipeManagement",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "UpdateRecipe",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "info": {
+                        "description": "List of updates made",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object",
+                "writeValue": {
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "path"
+                    ],
+                    "type": "object"
+                }
+            },
             "USEMAPPING": true
         },
         "TcHmiSqliteHistorize.Config": {
@@ -4258,6 +4675,13 @@
                 "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY": 3,
                 "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActPosition": 3,
                 "PLC1.MAIN.fbFeeder1.stHmi.stFeederInfo.stAxisY.fActVelocity": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget1PositionX": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget1PositionY": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget2PositionX": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget2PositionY": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fVelocity": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.sTarget1Name": 3,
+                "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.sTarget2Name": 3,
                 "PLC1.MAIN.fbFeeder2.stHmi.nStationState_Request": 3,
                 "PLC1.MAIN.fbFeeder2.stHmi.nStationState_Respond": 3,
                 "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo": 3,
@@ -4265,10 +4689,18 @@
                 "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisX.fActVelocity": 3,
                 "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActPosition": 3,
                 "PLC1.MAIN.fbFeeder2.stHmi.stFeederInfo.stAxisY.fActVelocity": 3,
+                "PLC1.MAIN.fbFeeder2.stHmi.stRecipeManagement.stFeederRecipe": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiEventLogger.Diagnostics": 1,
                 "TcHmiEventLogger.ListEnabledTargetSystems": 3,
+                "TcHmiRecipeManagement.ActivateRecipe": 3,
+                "TcHmiRecipeManagement.GetActiveRecipes": 3,
+                "TcHmiRecipeManagement.GetRecipes": 3,
+                "TcHmiRecipeManagement.ListRecipeTypes": 3,
+                "TcHmiRecipeManagement.ListRecipes": 3,
+                "TcHmiRecipeManagement.ReadFromTarget": 3,
+                "TcHmiRecipeManagement.UpdateRecipe": 3,
                 "TcHmiSqliteHistorize.DeleteDatabaseEntries": 3,
                 "TcHmiSqliteHistorize.Diagnostics": 1,
                 "TcHmiSqliteHistorize.GetTrendLineData": 3,

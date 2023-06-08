@@ -69,6 +69,20 @@
   ],
   "content": [
     {
+      "url": "Contents/C_Events.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/C_Historize.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
       "url": "Contents/C_Automatic.content",
       "preload": false,
       "keepAlive": false,
@@ -83,14 +97,7 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/C_Historize.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/C_Events.content",
+      "url": "Contents/C_Recipe.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,

@@ -55,6 +55,16 @@
       "name": "Functions/CallMethNoParams.js",
       "description": "",
       "type": "JavaScript"
+    },
+    {
+      "name": "FunctionJS1.js",
+      "description": "",
+      "type": "JavaScript"
+    },
+    {
+      "name": "FunctionJS2.js",
+      "description": "",
+      "type": "JavaScript"
     }
   ],
   "userControls": [
@@ -75,6 +85,12 @@
     }
   ],
   "userFunctions": [
+    {
+      "url": "FunctionJS1.js"
+    },
+    {
+      "url": "FunctionJS2.js"
+    },
     {
       "url": "Functions/CallMethNoParams.js"
     }

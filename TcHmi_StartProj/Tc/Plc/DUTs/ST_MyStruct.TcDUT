@@ -3,9 +3,8 @@
   <DUT Name="ST_MyStruct" Id="{f93a59ff-e066-4f74-afc4-a8680a6d6d59}">
     <Declaration><![CDATA[TYPE ST_MyStruct :
 STRUCT
-	iVal1	: INT;
-	iVal2	: INT;
-	iVal3	: INT;
+	xxxx	: INT;
+	yyyy	: INT;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

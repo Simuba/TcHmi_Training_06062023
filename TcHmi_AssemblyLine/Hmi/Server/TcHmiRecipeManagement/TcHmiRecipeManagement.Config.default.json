@@ -1,0 +1,185 @@
+{
+    "recipeList": {
+        "Feeder01": {
+            "F01_Slow": {
+                "recipeTypeName": "Feeder01",
+                "values": {
+                    "fTarget1PositionX": 10.0,
+                    "fTarget1PositionY": 0.0,
+                    "fTarget2PositionX": 1000.0,
+                    "fTarget2PositionY": 2000.0,
+                    "fVelocity": 250.0,
+                    "sTarget1Name": "Target1",
+                    "sTarget2Name": "Target2"
+                }
+            },
+            "F01_default": {
+                "recipeTypeName": "Feeder01",
+                "values": {
+                    "fTarget1PositionX": 0.0,
+                    "fTarget1PositionY": 0.0,
+                    "fTarget2PositionX": 1000.0,
+                    "fTarget2PositionY": 2000.0,
+                    "fVelocity": 250.0,
+                    "sTarget1Name": "Target1",
+                    "sTarget2Name": "Target2"
+                }
+            },
+            "F01_default_new": {
+                "recipeTypeName": "Feeder01",
+                "values": {
+                    "fTarget1PositionX": 0.0,
+                    "fTarget1PositionY": 0.0,
+                    "fTarget2PositionX": 1000.0,
+                    "fTarget2PositionY": 2000.0,
+                    "fVelocity": 250.0,
+                    "sTarget1Name": "Target1",
+                    "sTarget2Name": "Target2"
+                }
+            }
+        },
+        "Feeder02": {
+            "F02_default": {
+                "recipeTypeName": "Feeder02",
+                "values": {
+                    "stFeederRecipe": {
+                        "fTarget1PositionX": 0.0,
+                        "fTarget1PositionY": 0.0,
+                        "fTarget2PositionX": 1000.0,
+                        "fTarget2PositionY": 2000.0,
+                        "fVelocity": 400.0,
+                        "sTarget1Name": "Target1",
+                        "sTarget2Name": "Target2"
+                    }
+                }
+            },
+            "F02_near": {
+                "recipeTypeName": "Feeder02",
+                "values": {
+                    "stFeederRecipe": {
+                        "fTarget1PositionX": 0.0,
+                        "fTarget1PositionY": 0.0,
+                        "fTarget2PositionX": 1000.0,
+                        "fTarget2PositionY": 2000.0,
+                        "fVelocity": 400.0,
+                        "sTarget1Name": "Target1",
+                        "sTarget2Name": "Target2"
+                    }
+                }
+            }
+        }
+    },
+    "recipeTypeList": {
+        "Feeder01": {
+            "members": {
+                "fTarget1PositionX": {
+                    "defaultValue": 0.0,
+                    "enabled": true,
+                    "group": "",
+                    "order": 0,
+                    "schema": {
+                        "maximum": 50.0,
+                        "minimum": 0.0
+                    },
+                    "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget1PositionX",
+                    "unit": "mm"
+                },
+                "fTarget1PositionY": {
+                    "defaultValue": 0.0,
+                    "enabled": true,
+                    "group": "",
+                    "order": 1,
+                    "schema": {
+                        "maximum": 50.0,
+                        "minimum": 0.0
+                    },
+                    "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget1PositionY",
+                    "unit": "mm"
+                },
+                "fTarget2PositionX": {
+                    "defaultValue": 1000.0,
+                    "enabled": true,
+                    "group": "",
+                    "order": 2,
+                    "schema": {
+                        "maximum": 1000.0,
+                        "minimum": 900.0
+                    },
+                    "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget2PositionX",
+                    "unit": "mm"
+                },
+                "fTarget2PositionY": {
+                    "defaultValue": 2000.0,
+                    "enabled": true,
+                    "group": "",
+                    "order": 3,
+                    "schema": {
+                        "maximum": 2000.0,
+                        "minimum": 1500.0
+                    },
+                    "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fTarget2PositionY",
+                    "unit": "mm"
+                },
+                "fVelocity": {
+                    "defaultValue": 500.0,
+                    "enabled": true,
+                    "group": "",
+                    "order": 4,
+                    "schema": {
+                        "maximum": 500.0,
+                        "minimum": 250.0
+                    },
+                    "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.fVelocity",
+                    "unit": "mm/s"
+                },
+                "sTarget1Name": {
+                    "defaultValue": "Target1",
+                    "enabled": true,
+                    "group": "",
+                    "order": 5,
+                    "schema": {},
+                    "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.sTarget1Name",
+                    "unit": ""
+                },
+                "sTarget2Name": {
+                    "defaultValue": "Target2",
+                    "enabled": true,
+                    "group": "",
+                    "order": 6,
+                    "schema": {},
+                    "symbol": "PLC1.MAIN.fbFeeder1.stHmi.stRecipeManagement.stFeederRecipe.sTarget2Name",
+                    "unit": ""
+                }
+            },
+            "options": {
+                "enabled": "None"
+            },
+            "recipeTypeNames": []
+        },
+        "Feeder02": {
+            "members": {
+                "stFeederRecipe": {
+                    "defaultValue": {
+                        "fTarget1PositionX": 0.0,
+                        "fTarget1PositionY": 0.0,
+                        "fTarget2PositionX": 1000.0,
+                        "fTarget2PositionY": 2000.0,
+                        "fVelocity": 400.0,
+                        "sTarget1Name": "Target1",
+                        "sTarget2Name": "Target2"
+                    },
+                    "enabled": true,
+                    "group": "",
+                    "order": 0,
+                    "schema": {},
+                    "symbol": "PLC1.MAIN.fbFeeder2.stHmi.stRecipeManagement.stFeederRecipe",
+                    "unit": ""
+                }
+            },
+            "options": {
+                "enabled": "None"
+            },
+            "recipeTypeNames": []
+        }
+    }
+}

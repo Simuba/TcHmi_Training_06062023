@@ -61,6 +61,7 @@
   },
   {
     "name": "%l%L_Recipe%/l%",
+    "page": "Contents/C_Recipe.content",
     "imageWidthUnit": "px",
     "imageHeightUnit": "px"
   }
