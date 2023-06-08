@@ -64,6 +64,18 @@
     "page": "Contents/C_Recipe.content",
     "imageWidthUnit": "px",
     "imageHeightUnit": "px"
+  },
+  {
+    "name": "Data",
+    "page": "Contents/C_Datagrid.content",
+    "imageWidthUnit": "px",
+    "imageHeightUnit": "px"
+  },
+  {
+    "name": "Diag",
+    "page": "Contents/C_Diag.content",
+    "imageWidthUnit": "px",
+    "imageHeightUnit": "px"
   }
 ]
 </script>
@@ -91,6 +103,14 @@
     "overflow": false
   },
   {
+    "width": 1.0,
+    "widthUnit": "factor",
+    "widthMode": "Value",
+    "maxWidthUnit": "px",
+    "minWidthUnit": "px",
+    "overflow": false
+  },
+  {
     "width": 350.0,
     "widthUnit": "px",
     "widthMode": "Value",
@@ -100,7 +120,7 @@
   }
 ]
 </script>
-<div id="TsStateControl" data-tchmi-type="TcHmi.Controls.TsStateControl.TsStateControl" data-tchmi-blue-state="Man." data-tchmi-green-state="Auto." data-tchmi-grid-column-index="2" data-tchmi-grid-row-index="0" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-orange-state="Stop" data-tchmi-request-state="%s%PLC1.MAIN.fbFeeder1.stHmi.nStationState_Request|BindingMode=TwoWay%/s%" data-tchmi-response-state="%s%PLC1.MAIN.fbFeeder1.stHmi.nStationState_Respond%/s%" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="10" data-tchmi-bottom="0">
+<div id="TsStateControl" data-tchmi-type="TcHmi.Controls.TsStateControl.TsStateControl" data-tchmi-blue-state="Man." data-tchmi-green-state="Auto." data-tchmi-grid-column-index="3" data-tchmi-grid-row-index="0" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-orange-state="Stop" data-tchmi-request-state="%s%PLC1.MAIN.fbFeeder1.stHmi.nStationState_Request|BindingMode=TwoWay%/s%" data-tchmi-response-state="%s%PLC1.MAIN.fbFeeder1.stHmi.nStationState_Respond%/s%" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="10" data-tchmi-bottom="0">
 </div>
 <div id="imgFeeder1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="0" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-src="Images/transport-portal-pressed.svg">
 
@@ -160,6 +180,22 @@
 ]
 </script>
 </div>
+<div id="TcHmiUserManagement" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiUserManagement" data-tchmi-grid-column-index="2" data-tchmi-grid-row-index="0" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-allow-switch-user="true">
+</div>
+</div>
+<div id="popupMain" data-tchmi-type="TcHmi.Controls.System.TcHmiPopup" data-tchmi-grid-column-index="0" data-tchmi-grid-row-index="1" data-tchmi-height="500" data-tchmi-height-unit="px" data-tchmi-left="118" data-tchmi-left-unit="px" data-tchmi-top="-40" data-tchmi-top-unit="px" data-tchmi-width="500" data-tchmi-width-unit="px" data-tchmi-modal="true">
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-target-file" type="application/json">
+{
+  "path": "UserControls/UC_Axis.usercontrol",
+  "attributes": {
+    "data-tchmi-axisinfo": "%i%SelectedFeeder%/i%",
+    "data-tchmi-axisletter": "H"
+  }
+}
+</script>
 </div>
 </div>
 

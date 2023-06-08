@@ -1,0 +1,5 @@
+<div id="C_PopUp" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="500" data-tchmi-height="500">
+
+<div id="txtPopup" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-left="130" data-tchmi-left-unit="px" data-tchmi-text="My PopUp" data-tchmi-top="185" data-tchmi-top-unit="px" data-tchmi-width="192" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="30">
+</div>
+</div>

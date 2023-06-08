@@ -13,6 +13,18 @@
                     "sTarget2Name": "Target2"
                 }
             },
+            "F01_Slow_1": {
+                "recipeTypeName": "Feeder01",
+                "values": {
+                    "fTarget1PositionX": 10.0,
+                    "fTarget1PositionY": 0.0,
+                    "fTarget2PositionX": 1000.0,
+                    "fTarget2PositionY": 1999.0,
+                    "fVelocity": 250.0,
+                    "sTarget1Name": "Target1",
+                    "sTarget2Name": "Target2"
+                }
+            },
             "F01_default": {
                 "recipeTypeName": "Feeder01",
                 "values": {

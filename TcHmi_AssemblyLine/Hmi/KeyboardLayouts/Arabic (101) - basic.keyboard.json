@@ -1,0 +1,1600 @@
+{
+  "useIndirectInput": false,
+  "hasNumPad": false,
+  "displayName": "Arabic (101)",
+  "localeName": "ar-SA",
+  "layouts": [
+    {
+      "dimensions": {
+        "width": 890.0,
+        "height": 290.0
+      },
+      "name": "default",
+      "keys": [
+        {
+          "geometry": {
+            "left": 87.64,
+            "top": 0.0,
+            "width": 12.36,
+            "height": 17.24
+          },
+          "type": "edit",
+          "code": "Backspace",
+          "key": "Backspace",
+          "longpressAction": "repeat",
+          "labels": [
+            {
+              "type": "svg",
+              "svg": {
+                "dimensions": {
+                  "width": 22.0,
+                  "height": 14.0
+                },
+                "path": "M 0.5 7 L 7 0.5 L 21.5 0.5 L 21.5 13.5 L 7 13.5 Z M 10 3 L 18 11 M 10 11 L 18 3"
+              }
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 85.96,
+            "top": 41.38,
+            "width": 14.04,
+            "height": 17.24
+          },
+          "code": "Enter",
+          "key": "Enter",
+          "labels": [
+            {
+              "type": "svg",
+              "svg": {
+                "dimensions": {
+                  "width": 22.0,
+                  "height": 14.0
+                },
+                "path": "M 21.5 8.5 L 21.5 0.5 L 21.5 8.5 L 5.5 8.5 M 5.5 3.5 L 0.5 8.5 L 5.5 13.5"
+              }
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 82.58,
+            "top": 62.07,
+            "width": 17.42,
+            "height": 17.24
+          },
+          "type": "modifier",
+          "code": "ShiftRight",
+          "key": "Shift",
+          "mode": "sticky",
+          "location": "right",
+          "labels": [
+            {
+              "type": "svg",
+              "svg": {
+                "dimensions": {
+                  "width": 14.0,
+                  "height": 14.0
+                },
+                "path": "M 3.5 13.5 L 3.5 6.5 L 0.5 6.5 L 7 0.5 L 13.5 6.5 L 10.5 6.5 L 10.5 13.5 Z"
+              }
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 0.0,
+            "top": 82.76,
+            "width": 7.3,
+            "height": 17.24
+          },
+          "type": "modifier",
+          "code": "ControlLeft",
+          "key": "Control",
+          "mode": "sticky",
+          "location": "left",
+          "labels": [
+            {
+              "type": "text",
+              "text": "Ctrl"
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 16.85,
+            "top": 82.76,
+            "width": 7.3,
+            "height": 17.24
+          },
+          "type": "modifier",
+          "code": "AltLeft",
+          "key": "Alt",
+          "mode": "sticky",
+          "location": "left",
+          "labels": [
+            {
+              "type": "text",
+              "text": "Alt"
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 0.0,
+            "top": 41.38,
+            "width": 10.67,
+            "height": 17.24
+          },
+          "type": "modifier",
+          "code": "CapsLock",
+          "key": "CapsLock",
+          "mode": "toggle",
+          "labels": [
+            {
+              "type": "svg",
+              "svg": {
+                "dimensions": {
+                  "width": 14.0,
+                  "height": 14.0
+                },
+                "path": "M 3.5 0.5 L 3.5 7.5 L 0.5 7.5 L 7 13.5 L 13.5 7.5 L 10.5 7.5 L 10.5 0.5 Z"
+              }
+            }
+          ]
+        },
+        {
+          "ignoreModifiers": true,
+          "geometry": {
+            "left": 25.28,
+            "top": 82.76,
+            "width": 41.01,
+            "height": 17.24
+          },
+          "code": "Space",
+          "key": " ",
+          "labels": [
+            {
+              "type": "text",
+              "text": " "
+            }
+          ]
+        },
+        {
+          "shiftKey": "(",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 67.42,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit0",
+          "key": "0",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "0"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "("
+            }
+          ]
+        },
+        {
+          "shiftKey": "!",
+          "shiftCtrlKey": "‍",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 6.74,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit1",
+          "key": "1",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "1"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "!"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shiftcontrol"
+              ],
+              "text": "‍"
+            }
+          ]
+        },
+        {
+          "shiftKey": "@",
+          "shiftCtrlKey": "‌",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 13.48,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit2",
+          "key": "2",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "2"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "@"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shiftcontrol"
+              ],
+              "text": "‌"
+            }
+          ]
+        },
+        {
+          "shiftKey": "#",
+          "shiftCtrlKey": "‎",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 20.22,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit3",
+          "key": "3",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "3"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "#"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shiftcontrol"
+              ],
+              "text": "‎"
+            }
+          ]
+        },
+        {
+          "shiftKey": "$",
+          "shiftCtrlKey": "‏",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 26.97,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit4",
+          "key": "4",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "4"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "$"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shiftcontrol"
+              ],
+              "text": "‏"
+            }
+          ]
+        },
+        {
+          "shiftKey": "%",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 33.71,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit5",
+          "key": "5",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "5"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "%"
+            }
+          ]
+        },
+        {
+          "shiftKey": "^",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 40.45,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit6",
+          "key": "6",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "6"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "^"
+            }
+          ]
+        },
+        {
+          "shiftKey": "&",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 47.19,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit7",
+          "key": "7",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "7"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "&"
+            }
+          ]
+        },
+        {
+          "shiftKey": "*",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 53.93,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit8",
+          "key": "8",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "8"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "*"
+            }
+          ]
+        },
+        {
+          "shiftKey": ")",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 60.67,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Digit9",
+          "key": "9",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "9"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "shiftKey": "ِ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 11.8,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyA",
+          "key": "ش",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ش"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "ِ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "لآ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 42.13,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyB",
+          "key": "لا",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "لا"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "لآ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "}",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 28.65,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyC",
+          "key": "ؤ",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ؤ"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "}"
+            }
+          ]
+        },
+        {
+          "shiftKey": "]",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 25.28,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyD",
+          "key": "ي",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ي"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "shiftKey": "ُ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 23.6,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyE",
+          "key": "ث",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ث"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "ُ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "[",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 32.02,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyF",
+          "key": "ب",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ب"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "["
+            }
+          ]
+        },
+        {
+          "shiftKey": "لأ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 38.76,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyG",
+          "key": "ل",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ل"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "لأ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "أ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 45.51,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyH",
+          "key": "ا",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ا"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "أ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "÷",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 57.3,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyI",
+          "key": "ه",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ه"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "÷"
+            }
+          ]
+        },
+        {
+          "shiftKey": "ـ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 52.25,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyJ",
+          "key": "ت",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ت"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "ـ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "،",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 58.99,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyK",
+          "key": "ن",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ن"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "،"
+            }
+          ]
+        },
+        {
+          "shiftKey": "/",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 65.73,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyL",
+          "key": "م",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "م"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "/"
+            }
+          ]
+        },
+        {
+          "shiftKey": "’",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 55.62,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyM",
+          "key": "ة",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ة"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "’"
+            }
+          ]
+        },
+        {
+          "shiftKey": "آ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 48.88,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyN",
+          "key": "ى",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ى"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "آ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "×",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 64.04,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyO",
+          "key": "خ",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "خ"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "×"
+            }
+          ]
+        },
+        {
+          "shiftKey": "؛",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 70.79,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyP",
+          "key": "ح",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ح"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "؛"
+            }
+          ]
+        },
+        {
+          "shiftKey": "َ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 10.11,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyQ",
+          "key": "ض",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ض"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "َ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "ٌ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 30.34,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyR",
+          "key": "ق",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ق"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "ٌ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "ٍ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 18.54,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyS",
+          "key": "س",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "س"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "ٍ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "لإ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 37.08,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyT",
+          "key": "ف",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ف"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "لإ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "‘",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 50.56,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyU",
+          "key": "ع",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ع"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "‘"
+            }
+          ]
+        },
+        {
+          "shiftKey": "{",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 35.39,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyV",
+          "key": "ر",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ر"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "{"
+            }
+          ]
+        },
+        {
+          "shiftKey": "ً",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 16.85,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyW",
+          "key": "ص",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ص"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "ً"
+            }
+          ]
+        },
+        {
+          "shiftKey": "ْ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 21.91,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyX",
+          "key": "ء",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ء"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "ْ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "إ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 43.82,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyY",
+          "key": "غ",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "غ"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "إ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "~",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 15.17,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "KeyZ",
+          "key": "ئ",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ئ"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "~"
+            }
+          ]
+        },
+        {
+          "shiftKey": ":",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 72.47,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Semicolon",
+          "key": "ك",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ك"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": ":"
+            }
+          ]
+        },
+        {
+          "shiftKey": "+",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 80.9,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Equal",
+          "key": "=",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "="
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "+"
+            }
+          ]
+        },
+        {
+          "shiftKey": ",",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 62.36,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Comma",
+          "key": "و",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "و"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": ","
+            }
+          ]
+        },
+        {
+          "shiftKey": "_",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 74.16,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Minus",
+          "key": "-",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "-"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "_"
+            }
+          ]
+        },
+        {
+          "shiftKey": ".",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 69.1,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Period",
+          "key": "ز",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ز"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "."
+            }
+          ]
+        },
+        {
+          "shiftKey": "؟",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 75.84,
+            "top": 62.07,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Slash",
+          "key": "ظ",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ظ"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "؟"
+            }
+          ]
+        },
+        {
+          "shiftKey": "ّ",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 0.0,
+            "top": 0.0,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Backquote",
+          "key": "ذ",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ذ"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "ّ"
+            }
+          ]
+        },
+        {
+          "shiftKey": "<",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 77.53,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "BracketLeft",
+          "key": "ج",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ج"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "<"
+            }
+          ]
+        },
+        {
+          "shiftKey": "|",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 91.01,
+            "top": 20.69,
+            "width": 8.99,
+            "height": 17.24
+          },
+          "code": "Backslash",
+          "key": "\\",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "\\"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "|"
+            }
+          ]
+        },
+        {
+          "shiftKey": ">",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 84.27,
+            "top": 20.69,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "BracketRight",
+          "key": "د",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "د"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "shiftKey": "\"",
+          "noCapsLock": true,
+          "geometry": {
+            "left": 79.21,
+            "top": 41.38,
+            "width": 5.62,
+            "height": 17.24
+          },
+          "code": "Quote",
+          "key": "ط",
+          "labels": [
+            {
+              "type": "text",
+              "visible": [
+                "default"
+              ],
+              "text": "ط"
+            },
+            {
+              "type": "text",
+              "visible": [
+                "shift"
+              ],
+              "text": "\""
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 0.0,
+            "top": 20.69,
+            "width": 8.99,
+            "height": 17.24
+          },
+          "code": "Tab",
+          "key": "Tab",
+          "labels": [
+            {
+              "type": "svg",
+              "svg": {
+                "dimensions": {
+                  "width": 22.0,
+                  "height": 16.0
+                },
+                "path": "M 0.5 0.5 L 0.5 8.5 M 21.5 4.5 L 6.5 4.5 M 6.5 0.5 L 2.5 4.5 L 6.5 8.5 M 21.5 7.5 L 21.5 15.5 M 0.5 11.5 L 15.5 11.5 M 15.5 7.5 L 19.5 11.5 L 15.5 15.5"
+              }
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 0.0,
+            "top": 62.07,
+            "width": 14.04,
+            "height": 17.24
+          },
+          "type": "modifier",
+          "code": "ShiftLeft",
+          "key": "Shift",
+          "mode": "sticky",
+          "location": "left",
+          "labels": [
+            {
+              "type": "svg",
+              "svg": {
+                "dimensions": {
+                  "width": 14.0,
+                  "height": 14.0
+                },
+                "path": "M 3.5 13.5 L 3.5 6.5 L 0.5 6.5 L 7 0.5 L 13.5 6.5 L 10.5 6.5 L 10.5 13.5 Z"
+              }
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 67.42,
+            "top": 82.76,
+            "width": 7.3,
+            "height": 17.24
+          },
+          "type": "modifier",
+          "code": "AltRight",
+          "key": "Alt",
+          "mode": "sticky",
+          "location": "right",
+          "labels": [
+            {
+              "type": "text",
+              "text": "Alt"
+            }
+          ]
+        },
+        {
+          "geometry": {
+            "left": 92.7,
+            "top": 82.76,
+            "width": 7.3,
+            "height": 17.24
+          },
+          "type": "modifier",
+          "code": "ControlRight",
+          "key": "Control",
+          "mode": "sticky",
+          "location": "right",
+          "labels": [
+            {
+              "type": "text",
+              "text": "Ctrl"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

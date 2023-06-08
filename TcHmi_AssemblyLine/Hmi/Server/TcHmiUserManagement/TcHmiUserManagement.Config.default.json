@@ -1,10 +1,22 @@
 {
     "USERS": {
+        "Admin": {
+            "ALGORITHM": 1,
+            "ENABLED": true,
+            "PASSWORD": "06bc67ad30fec7f677f08d42f2799533bbd063c9bab81b75cab65a60ec27c08b8e9172caa0f1d5f43351eb6f4749c9c565716987a6977d29fea560427d644e1f",
+            "SALT": "ZsGcPkW17peKqhnExcoIOa8RnAwkFlzee46KVzxP+hUgurdOqiXmeKujVPvTGzUPp4KOSNNsHl+jnMmMC8+oZQ=="
+        },
+        "Operator_1": {
+            "ALGORITHM": 1,
+            "ENABLED": true,
+            "PASSWORD": "addc568f01eea952283251916bd5bada51fb3224ad4abd4b142f5469aa34d6f7e0df6e40993dfb2bec048953e08b822e4503930f8bd905a87b9a448da38f6c08",
+            "SALT": "yZAzs7NT+cUCrYcGzHjqmecRPYE/uIzrFdxuEzScDkLpM3uHI3nO1UscKtbAOuUU6qTxtZDPjtbejCxjyyl7gA=="
+        },
         "__SystemAdministrator": {
-            "ALGORITHM": 0,
-            "ENABLED": false,
-            "PASSWORD": "",
-            "SALT": ""
+            "ALGORITHM": 1,
+            "ENABLED": true,
+            "PASSWORD": "287562fa1c105df792140aa4b477dd58fc74d89a77cba18c8cb490c7ef5a1458de8c2f323084836da83fcaedf7d05f41e1e3a54734101efc71efaff40bc75a52",
+            "SALT": "ZGNyoBgjCSAQLfzyByw6tghIISdc+1xbiRZXsckpoJwoA2d5jc8eORM8kSgD6jNilGrT+K6u6ATCS+HzYSk/qQ=="
         },
         "__SystemGuest": {
             "ALGORITHM": 0,

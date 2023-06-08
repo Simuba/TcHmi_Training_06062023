@@ -12,7 +12,7 @@
     <HmiTitle>Please enter your Title...</HmiTitle>
     <HmiVerboseLevel>2</HmiVerboseLevel>
     <HmiVersion>1.0.0.0</HmiVersion>
-    <HmiCommunicationServerPort>3000</HmiCommunicationServerPort>
+    <HmiCommunicationServerPort>3001</HmiCommunicationServerPort>
     <HmiLogTcHmiServerMessages>false</HmiLogTcHmiServerMessages>
     <HmiLogDesignerModeComMessages>false</HmiLogDesignerModeComMessages>
     <HmiServerVersion>Latest</HmiServerVersion>
@@ -27,7 +27,7 @@
     <HmiViewportUserScaleable>Default</HmiViewportUserScaleable>
     <HmiPostProcessing>True</HmiPostProcessing>
     <Name>Hmi</Name>
-    <HmiCommunicationRouterPort>10101</HmiCommunicationRouterPort>
+    <HmiCommunicationRouterPort>10103</HmiCommunicationRouterPort>
     <HmiCommunicationServerAuthPort>13000</HmiCommunicationServerAuthPort>
     <HmiInitial>1.12.760.42</HmiInitial>
     <HmiRecent>1.12.760.42</HmiRecent>
@@ -110,13 +110,71 @@
   <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
   <Target Name="ReBuild" DependsOnTargets="Clean; Build" />
   <ItemGroup>
+    <Content Include="Contents\C_Datagrid.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\C_Diag.content">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Contents\C_Events.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\C_Historize.content">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Contents\C_PopUp.content">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Contents\C_Recipe.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Functions\ChangeView.function.json">
+      <SubType>Content</SubType>
+      <DependentUpon>Functions\ChangeView.js</DependentUpon>
+    </Content>
+    <Content Include="Functions\ChangeView.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Functions\CheckResolution.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Functions\DownloadRecipe.function.json">
+      <SubType>Content</SubType>
+      <DependentUpon>Functions\DownloadRecipe.js</DependentUpon>
+    </Content>
+    <Content Include="Functions\DownloadRecipe.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Functions\GetDataFromApi.function.json">
+      <SubType>Content</SubType>
+      <DependentUpon>Functions\GetDataFromApi.js</DependentUpon>
+    </Content>
+    <Content Include="Functions\GetDataFromApi.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Functions\ReadUrlParameter.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Functions\UploadRecipe.function.json">
+      <SubType>Content</SubType>
+      <DependentUpon>Functions\UploadRecipe.js</DependentUpon>
+    </Content>
+    <Content Include="Functions\UploadRecipe.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="KeyboardLayouts\Arabic %28101%29 - basic.keyboard.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Mobile.view">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEcDiagnostics\TcHmiEcDiagnostics.Config.default.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEcDiagnostics\TcHmiEcDiagnostics.Config.remote.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEcDiagnostics\TcHmiEcDiagnostics.Storage.json">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Config.default.json">
@@ -146,6 +204,9 @@
     <Content Include="Server\TcHmiSqliteHistorize\TcHmiSqliteHistorize.Storage.json">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Test.view">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="UserControls\UC_Axis.usercontrol">
       <SubType>Content</SubType>
     </Content>
@@ -169,6 +230,8 @@
     <Folder Include="KeyboardLayouts\" />
     <Folder Include="Localization" />
     <Folder Include="Contents" />
+    <Folder Include="Functions" />
+    <Folder Include="Server\TcHmiEcDiagnostics" />
     <Folder Include="Server\TcHmiEventLogger" />
     <Folder Include="Server\TcHmiRecipeManagement" />
     <Folder Include="Server\TcHmiSqliteHistorize" />
